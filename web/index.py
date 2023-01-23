@@ -11,10 +11,10 @@
 #################################################################################################
 
 import os as System
+from flask import render_template as renderTemplate
 
-# TODO - Update this function to create a landing page with login/register options ... 
 def Contents():
-    return "Hello World!"
+    return renderTemplate("index.html")
 
 #################################################################################################
 # File: index.py                                                                                #
