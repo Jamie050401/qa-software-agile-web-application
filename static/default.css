@@ -1,3 +1,13 @@
+/*************************************************************************************************/
+/* Program:  Python / SQLite Web Application                                                     */
+/* Filename: default.css                                                                         */
+/* Author:   Jamie Allen                                                                         */
+/* Course:   BSc Digital Technology and Solutions                                                */
+/* Module:   Software Engineering and Agile                                                      */
+/* Version:  1.0                                                                                 */
+/* Date:     xx/xx/23                                                                            */
+/*************************************************************************************************/
+
 /* Background: #262626 (Dark Gray) */
 /* Button:     #4dffff (Cyan) */
 
@@ -18,3 +28,11 @@ body {
 .default__fieldset:not(:last-of-type) {
     border-bottom: 1px solid azure
 }
+
+/*************************************************************************************************/
+/* File: default.css                                                                             */
+/*                                                                                               */
+/* Disclaimer: The following source code is the sole work of the author unless otherwise stated. */
+/*                                                                                               */
+/* Copyright (c) Jamie Allen. All Rights Reserved.                                               */
+/*************************************************************************************************/
