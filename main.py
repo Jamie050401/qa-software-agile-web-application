@@ -12,7 +12,7 @@
 
 import os as System
 
-import web.flask as Flask
+import web as Flask
 
 if __name__ == '__main__':
     application = Flask.CreateApplication(__name__)

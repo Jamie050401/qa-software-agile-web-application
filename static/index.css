@@ -1,0 +1,45 @@
+/*************************************************************************************************/
+/* Program:  Python / SQLite Web Application                                                     */
+/* Filename: index.css                                                                           */
+/* Author:   Jamie Allen                                                                         */
+/* Course:   BSc Digital Technology and Solutions                                                */
+/* Module:   Software Engineering and Agile                                                      */
+/* Version:  1.0                                                                                 */
+/* Date:     xx/xx/23                                                                            */
+/*************************************************************************************************/
+
+html {
+    font-size: 20px;
+    background-color: #262626;
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.index__fieldset {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.index__button {
+    font-size: 60px;
+    text-align: center;
+    border: 5px solid azure;
+    border-radius: 12px;
+    width: 300px;
+    height: 200px;
+    margin: 15px;
+    background-color: #4dffff;
+    color: #262626;
+}
+
+/*************************************************************************************************/
+/* File: index.py                                                                                */
+/*                                                                                               */
+/* Disclaimer: The following source code is the sole work of the author unless otherwise stated. */
+/*                                                                                               */
+/* Copyright (c) Jamie Allen. All Rights Reserved.                                               */
+/*************************************************************************************************/

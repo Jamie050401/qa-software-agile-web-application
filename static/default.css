@@ -1,0 +1,20 @@
+/* Background: #262626 (Dark Gray) */
+/* Button:     #4dffff (Cyan) */
+
+html {
+    font-size: 20px;
+    background-color: #262626;
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.default__fieldset {
+    padding: 40px 20px;
+}
+
+.default__fieldset:not(:last-of-type) {
+    border-bottom: 1px solid azure
+}

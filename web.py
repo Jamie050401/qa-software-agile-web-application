@@ -13,7 +13,7 @@
 import os as System
 from flask import Flask
 
-import web.index as Index
+import index as Index
 
 def CreateApplication(namespace : str):
     application = Flask(namespace)
