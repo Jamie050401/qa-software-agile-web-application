@@ -13,7 +13,7 @@
 import os as System
 from flask import Flask
 
-import index as Index
+import screens.index as Index
 
 def CreateApplication(namespace : str):
     application = Flask(namespace)
