@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: flask.py                                                                            #
+# Filename: index.py                                                                            #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -11,24 +11,13 @@
 #################################################################################################
 
 import os as System
-from flask import Flask
 
-import index.index as Index
-
-def CreateApplication(namespace : str):
-    application = Flask(namespace)
-    
-    @application.route("/")
-    def index():
-        return Index.Contents()
-    
-    return application
-
-def RunApplication(application : Flask):
-    application.run(host="0.0.0.0", port=80)
+# TODO - Update this function to create a landing page with login/register options ... 
+def Contents():
+    return "Hello World!"
 
 #################################################################################################
-# File: flask.py                                                                                #
+# File: index.py                                                                                #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

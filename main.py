@@ -10,13 +10,13 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import sys as System
+import os as System
 
 import web.flask as Flask
 
 if __name__ == '__main__':
-    application = Flask.createApplication()
-    Flask.runApplication(application)
+    application = Flask.CreateApplication(__name__)
+    Flask.RunApplication(application)
 
 #################################################################################################
 # File: main.py                                                                                 #
