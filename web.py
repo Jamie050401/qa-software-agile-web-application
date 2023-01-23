@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: flask.py                                                                            #
+# Filename: web.py                                                                              #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -28,7 +28,7 @@ def RunApplication(application : Flask):
     application.run(host="0.0.0.0", port=80)
 
 #################################################################################################
-# File: flask.py                                                                                #
+# File: web.py                                                                                  #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #
