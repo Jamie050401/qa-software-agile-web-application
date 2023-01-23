@@ -1,5 +1,7 @@
+#!/bin/python3
+
 #################################################################################################
-# Program:  Python / MSSQL Web Application TODO - Ammend the name where necessary ...           #
+# Program:  Python / SQLite Web Application                                                     #
 # Filename: main.py                                                                             #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
@@ -9,12 +11,12 @@
 #################################################################################################
 
 import sys as System
-# TODO - Import other default python modules here ...
 
-# TODO - Import other packages here ...
+import web.flask as Flask
 
 if __name__ == '__main__':
-    0
+    application = Flask.createApplication()
+    Flask.runApplication(application)
 
 #################################################################################################
 # File: main.py                                                                                 #
@@ -29,11 +31,17 @@ if __name__ == '__main__':
 #                                                                                               #
 # Python is used throughout this application. Other Packages are as follows:                    #
 #                                                                                               #
-# Python (xx/xx/xx) TODO - Finish Python reference here ...                                     #
+# Python (xxxx) TODO - Finish Python reference here ...                                         #
+#                                                                                               #
+# Flask (xxxx) TODO - Finish reference here ...                                                 #
+#                                                                                               #
+# pytest (xxxx) TODO - Finish reference here ...                                                #
 #                                                                                               #
 # TODO - Add references to other packages here ...                                              #
 #                                                                                               #
 # References used within this application are as follows:                                       #
+#                                                                                               #
+# Flask Tutorial for Beginners (2022) TODO - Finish reference here ...                          #
 #                                                                                               #
 # TODO - Add other references here ...                                                          #
 #                                                                                               #
