@@ -12,8 +12,6 @@
 
 from flask import Flask
 
-import web.views as Views
-
 def create_application():
     application = Flask(__name__)
     application.config['SECRET_KEY'] = 'secret_key'
