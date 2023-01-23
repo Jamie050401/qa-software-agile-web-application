@@ -1,5 +1,5 @@
 #################################################################################################
-# Program:  Python/SQLite Web Application TODO - Ammend the name where necessary ...            #
+# Program:  Python / MSSQL Web Application TODO - Ammend the name where necessary ...           #
 # Filename: main.py                                                                             #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
