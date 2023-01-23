@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: index.py                                                                            #
+# Filename: views.py                                                                            #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -10,14 +10,13 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import os as System
 from flask import render_template as renderTemplate
 
-def Contents():
+def Index():
     return renderTemplate("index.html")
 
 #################################################################################################
-# File: index.py                                                                                #
+# File: views.py                                                                                #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

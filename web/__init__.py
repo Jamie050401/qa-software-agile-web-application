@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: web.py                                                                              #
+# Filename: __init__.py                                                                         #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -10,25 +10,27 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import os as System
 from flask import Flask
 
-import screens.index as Index
+import web.views as Views
 
 def CreateApplication(namespace : str):
     application = Flask(namespace)
     
     @application.route("/")
     def index():
-        return Index.Contents()
+        return Views.Index()
     
     return application
 
 def RunApplication(application : Flask):
     application.run(host="0.0.0.0", port=80)
+    
+application = CreateApplication(__name__)
+RunApplication(application)
 
 #################################################################################################
-# File: web.py                                                                                  #
+# File: __init__.py                                                                             #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

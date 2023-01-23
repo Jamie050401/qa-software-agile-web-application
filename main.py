@@ -12,11 +12,11 @@
 
 import os as System
 
-import web as Flask
+import web as Website
 
+# TODO - Replace the favicon.ico with actual favicon ...
 if __name__ == '__main__':
-    application = Flask.CreateApplication(__name__)
-    Flask.RunApplication(application)
+    0
 
 #################################################################################################
 # File: main.py                                                                                 #
