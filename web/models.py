@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: views.py                                                                            #
+# Filename: models.py                                                                           #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -10,17 +10,10 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from flask import Blueprint, render_template
-
-views = Blueprint('views', __name__)
-
-@views.route('/')
-def index():
-    #return render_template("index.html")
-    return render_template("index.html")
+# Logic here ...
 
 #################################################################################################
-# File: views.py                                                                                #
+# File: models.py                                                                               #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

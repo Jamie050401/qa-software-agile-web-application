@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: views.py                                                                            #
+# Filename: auth.py                                                                             #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -10,17 +10,24 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from flask import Blueprint, render_template
+from flask import Blueprint
 
-views = Blueprint('views', __name__)
+auth = Blueprint('auth', __name__)
 
-@views.route('/')
-def index():
-    #return render_template("index.html")
-    return render_template("index.html")
+@auth.route('/login')
+def login():
+    return "<p>Login</p>"
+
+@auth.route('/logout')
+def logout():
+    return "<p>Logout</p>"
+
+@auth.route('/register')
+def register():
+    return "<p>Register</p>"
 
 #################################################################################################
-# File: views.py                                                                                #
+# File: auth.py                                                                                 #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

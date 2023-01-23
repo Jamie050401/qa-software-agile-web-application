@@ -14,9 +14,15 @@ import os as System
 
 import web as Website
 
+application = Website.create_application()
+
 # TODO - Replace the favicon.ico with actual favicon ...
+# TODO - Implement external config file to house options e.g. isDebug
+# TODO - Configure logic to allow passing of config file via dependency injection
 if __name__ == '__main__':
-    0
+    is_debug = True
+    Website.run_application(application, is_debug)
+    
 
 #################################################################################################
 # File: main.py                                                                                 #

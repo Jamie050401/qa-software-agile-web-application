@@ -14,20 +14,20 @@ from flask import Flask
 
 import web.views as Views
 
-def CreateApplication(namespace : str):
-    application = Flask(namespace)
+def create_application():
+    application = Flask(__name__)
+    application.config['SECRET_KEY'] = 'secret_key'
     
-    @application.route("/")
-    def index():
-        return Views.Index()
+    from .views import views
+    from .auth import auth
+    
+    application.register_blueprint(views, url_prefix='/')
+    application.register_blueprint(auth, url_prefix='/')
     
     return application
 
-def RunApplication(application : Flask):
-    application.run(host="0.0.0.0", port=80)
-    
-application = CreateApplication(__name__)
-RunApplication(application)
+def run_application(application : Flask, is_debug : bool):
+    application.run(host = "127.0.0.1", port = 80, debug = is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #
