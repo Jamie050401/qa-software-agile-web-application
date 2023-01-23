@@ -21,7 +21,7 @@ if __name__ == '__main__':
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #
-# Copyright (C) Jamie Allen. All Rights Reserved.                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
 #################################################################################################
 
 #################################################################################################
