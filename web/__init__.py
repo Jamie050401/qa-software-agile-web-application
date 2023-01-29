@@ -24,8 +24,8 @@ def create_application():
     
     return application
 
-def run_application(application : Flask, is_debug : bool):
-    application.run(host = "127.0.0.1", port = 80, debug = is_debug)
+def run_application(application : Flask, ip_address, is_debug : bool):
+    application.run(host = ip_address, port = 80, debug = is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #

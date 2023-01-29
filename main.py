@@ -17,11 +17,12 @@ import web as Website
 application = Website.create_application()
 
 # TODO - Replace the favicon.ico with actual favicon ...
-# TODO - Implement external config file to house options e.g. isDebug
+# TODO - Implement external config file to house options e.g. is_debug
 # TODO - Configure logic to allow passing of config file via dependency injection
 if __name__ == '__main__':
+    ip_address = "127.0.0.1"
     is_debug = True
-    Website.run_application(application, is_debug)
+    Website.run_application(application, ip_address, is_debug)
     
 
 #################################################################################################
@@ -43,11 +44,17 @@ if __name__ == '__main__':
 #                                                                                               #
 # pytest (xxxx) TODO - Finish reference here ...                                                #
 #                                                                                               #
+# Bootstrap (xxxx) TODO - Finish reference here ...                                             #
+#                                                                                               #
 # TODO - Add references to other packages here ...                                              #
 #                                                                                               #
 # References used within this application are as follows:                                       #
 #                                                                                               #
 # Flask Tutorial for Beginners (2022) TODO - Finish reference here ...                          #
+#                                                                                               #
+# HTML and CSS Tutorial (xxxx) TODO - Finish reference here ...                                 #
+#                                                                                               #
+# Python Website Tutorial (xxxx) TODO - Finish reference here ...                               #
 #                                                                                               #
 # TODO - Add other references here ...                                                          #
 #                                                                                               #
