@@ -22,7 +22,6 @@ views = Blueprint('views', __name__)
 def index():
     return render_template("index.html", user = current_user)
     
-
 #################################################################################################
 # File: views.py                                                                                #
 #                                                                                               #

@@ -60,8 +60,6 @@ class User(db.Model, UserMixin):
         self.first_name = first_name
         self.password = generate_password_hash(password, method="sha256")
         self.is_valid = is_valid
-    
-    
 
 #################################################################################################
 # File: models.py                                                                               #
