@@ -10,27 +10,25 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from os import urandom
-from flask import Flask
+from web.models import User
 
-def create_application():
-    application = Flask(__name__)
-    application.config['SECRET_KEY'] = urandom(12)
+class User():
+    user_id = 0
+    role_id = 0
+    is_authenticated = False
     
-    from web.views import views
-    from web.authentication.auth import auth
+    def login(self, user : User):
+        self.user_id = user.id
+        self.role_id = user.role_id
+        self.is_authenticated = True
     
-    application.register_blueprint(views, url_prefix='/')
-    application.register_blueprint(auth, url_prefix='/')
-    
-    from web.models import User
-    
-    # TODO - Implement new login manager
-    
-    return application
+    def logout(self):
+        self.user_id = 0
+        self.role_id = 0
+        self.is_authenticated = False
 
-def run_application(application : Flask, ip_address, is_debug : bool):
-    application.run(host = ip_address, port = 80, debug = is_debug)
+# TODO - Determine if this is appropriate - may result in only one user across the entire website
+current_user = User()
 
 #################################################################################################
 # File: __init__.py                                                                             #

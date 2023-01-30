@@ -11,59 +11,70 @@
 #################################################################################################
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_user, login_required, logout_user, current_user
-from werkzeug.security import check_password_hash # NOTE - This comes from flask_login
+from werkzeug.security import check_password_hash
 
-from . import db
-from .models import User
+from db import session_local
+from web.models import User
+from web.authentication import current_user
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
+        db = session_local()
+        
         email = request.form.get("email")
         password = request.form.get("password")
         
-        user = User.query.filter_by(email = email).first()
+        user = db.query(User).filter(User.email == email).first()
         if user:
             if check_password_hash(user.password, password):
                 flash("Logged in successfully!", category = "success")
-                login_user(user, remember = True) # TODO - Replace boolean with check box on screen to remember user
+                current_user.login(user)
+                db.close()
                 return redirect(url_for("views.index"))
             else:
                 flash("Incorrect email or password, please try again.", category = "failure")
         else:
             flash("Incorrect email or password, please try again.", category = "failure")
+        
+        db.close()
             
     return render_template("login.html", user = current_user)
 
 @auth.route('/logout')
-@login_required
 def logout():
-    logout_user()
+    current_user.logout()
     return redirect(url_for("auth.login"))
 
 @auth.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        db = session_local()
+        
         email = request.form.get("email")
         first_name = request.form.get("first_name")
         password = request.form.get("password_first")
         password_conf = request.form.get("password_second")
         
-        user = User.query.filter_by(email = email).first()
+        user = db.query(User).filter(User.email == email).first()
         if user:
             flash("Email already exists!", category = "failure")
+            db.close()
             return redirect(url_for("auth.register"))
         
-        new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf)
+        # Here 'role_id = 1' represents the 'User' role
+        new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf, role_id = 1)
         if new_user.is_valid:
-            db.session.add(new_user)
-            db.session.commit()
+            db.add(new_user)
+            db.commit()
             flash("User created!", category="success")
-            login_user(user, remember = True) # TODO - Replace boolean with check box on screen to remember user
+            current_user.login(new_user)
+            db.close()
             return redirect(url_for("views.index"))
+        
+        db.close()
         
     return render_template("register.html", user = current_user)
 

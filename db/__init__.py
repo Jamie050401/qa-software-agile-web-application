@@ -10,27 +10,37 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from os import urandom
-from flask import Flask
+from os import path
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker, declarative_base
+from werkzeug.security import generate_password_hash
 
-def create_application():
-    application = Flask(__name__)
-    application.config['SECRET_KEY'] = urandom(12)
-    
-    from web.views import views
-    from web.authentication.auth import auth
-    
-    application.register_blueprint(views, url_prefix='/')
-    application.register_blueprint(auth, url_prefix='/')
-    
-    from web.models import User
-    
-    # TODO - Implement new login manager
-    
-    return application
+DB_NAME = "db/database.db"
+SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
-def run_application(application : Flask, ip_address, is_debug : bool):
-    application.run(host = ip_address, port = 80, debug = is_debug)
+db_base = declarative_base()
+db_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args = {"check_same_thread": False})
+session_local = sessionmaker(autocommit = False, autoflush = False, bind = db_engine)
+
+def get_queries():
+    with open("db/sql/models/db_setup.sql") as file:
+        file_queries = file.read().replace("\n", " ")
+    queries = file_queries.split("||")
+    return queries
+
+def create_database():
+    from web import models
+    db = session_local()
+    
+    if not path.exists(DB_NAME):
+        models.db_base.metadata.create_all(bind = db_engine)
+        queries = get_queries()
+        for query in queries:
+            modified_query = query.replace("replace_password", generate_password_hash("password", "sha256"))
+            db.execute(text(modified_query))
+        db.commit()
+    
+    db.close()
 
 #################################################################################################
 # File: __init__.py                                                                             #
