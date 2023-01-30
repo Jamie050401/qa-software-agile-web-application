@@ -10,7 +10,7 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from os import path, urandom
+from os import urandom
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
