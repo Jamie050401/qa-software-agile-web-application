@@ -42,6 +42,10 @@ if __name__ == '__main__':
 #                                                                                               #
 # Flask (xxxx) TODO - Finish reference here ...                                                 #
 #                                                                                               #
+# Flask SQL Alchemy (xxxx) TODO - Finish reference here ...                                     #
+#                                                                                               #
+# Flask Login (xxxx) TODO - Finish reference here ...                                           #
+#                                                                                               #
 # pytest (xxxx) TODO - Finish reference here ...                                                #
 #                                                                                               #
 # Bootstrap (xxxx) TODO - Finish reference here ...                                             #
