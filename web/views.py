@@ -10,13 +10,18 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
+
+from web.authentication import current_user
 
 views = Blueprint('views', __name__)
 
 @views.route('/')
 def index():
-    return render_template("index.html")
+    if current_user.is_authenticated:
+        return render_template("index.html", user = current_user)
+    else:
+        return redirect(url_for("auth.login"))
     
 #################################################################################################
 # File: views.py                                                                                #

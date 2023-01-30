@@ -17,6 +17,7 @@ application = Website.create_application()
 
 # TODO - Replace the favicon.ico with actual favicon ...
 # TODO - Recreate virtual environment (named as .venv)
+# TODO - Implement 'remember me' functionalty for both register and login forms
 # TODO - Implement external config file to house options e.g. is_debug
 # TODO - Configure logic to allow passing of config file via dependency injection
 if __name__ == '__main__':

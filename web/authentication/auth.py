@@ -14,7 +14,8 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import check_password_hash
 
 from db import session_local
-from .models import User
+from web.models import User
+from web.authentication import current_user
 
 auth = Blueprint('auth', __name__)
 
@@ -30,7 +31,7 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash("Logged in successfully!", category = "success")
-                # TODO - Login user here ...
+                current_user.login(user)
                 db.close()
                 return redirect(url_for("views.index"))
             else:
@@ -40,11 +41,11 @@ def login():
         
         db.close()
             
-    return render_template("login.html")
+    return render_template("login.html", user = current_user)
 
 @auth.route('/logout')
 def logout():
-    # TODO - Logout user here ...
+    current_user.logout()
     return redirect(url_for("auth.login"))
 
 @auth.route('/register', methods=["GET", "POST"])
@@ -69,13 +70,13 @@ def register():
             db.add(new_user)
             db.commit()
             flash("User created!", category="success")
-            # TODO - Login user here ...
+            current_user.login(new_user)
             db.close()
             return redirect(url_for("views.index"))
         
         db.close()
         
-    return render_template("register.html")
+    return render_template("register.html", user = current_user)
 
 #################################################################################################
 # File: auth.py                                                                                 #
