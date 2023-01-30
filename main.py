@@ -10,8 +10,6 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import os as System
-
 import web as Website
 
 application = Website.create_application()

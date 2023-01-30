@@ -12,19 +12,21 @@
 
 from flask import flash
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash # NOTE - This comes from flask_login
+from werkzeug.security import generate_password_hash
 
 from . import db
 
-# NOTE - For foreign keys on other DB tables:
-#  user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-#  db.relationship("<ClassName>") - Can be used to attribute foreign objects to the current object
+class Role(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(60), unique = True, nullable = False)
+    users = db.relationship("User")
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
-    email = db.Column(db.String(60), unique = True)
-    first_name = db.Column(db.String(60))
-    password = db.Column(db.String(60))
+    role_id = db.Column(db.Integer, db.ForeignKey("role.id"))
+    email = db.Column(db.String(60), unique = True, nullable = False)
+    first_name = db.Column(db.String(60), nullable = False)
+    password = db.Column(db.String(60), nullable = False)
     is_valid = True
     
     def __init__(self, email : str, first_name : str, password : str, password_conf : str):
