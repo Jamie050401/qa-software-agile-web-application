@@ -12,8 +12,9 @@
 
 from flask import flash
 from sqlalchemy import Column, Integer, String, ForeignKey
+from werkzeug.security import generate_password_hash
 
-from . import db_base
+from db import db_base
 
 class Role(db_base):
     __tablename__ = "role"
@@ -63,7 +64,7 @@ class User(db_base):
         self.role_id = role_id
         self.email = email
         self.first_name = first_name
-        self.password = password # TODO - Hash password here ...
+        self.password = generate_password_hash(password, "sha256")
         self.is_valid = is_valid
 
 #################################################################################################

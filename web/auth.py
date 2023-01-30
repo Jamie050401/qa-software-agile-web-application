@@ -11,8 +11,9 @@
 #################################################################################################
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
+from werkzeug.security import check_password_hash
 
-from . import session_local, db_engine
+from db import session_local
 from .models import User
 
 auth = Blueprint('auth', __name__)
@@ -27,8 +28,7 @@ def login():
         
         user = db.query(User).filter(User.email == email).first()
         if user:
-            #if check_password_hash(user.password, password):
-            if (user.password == password):
+            if check_password_hash(user.password, password):
                 flash("Logged in successfully!", category = "success")
                 # TODO - Login user here ...
                 db.close()
@@ -63,7 +63,7 @@ def register():
             db.close()
             return redirect(url_for("auth.register"))
         
-        # role_id = 1 represents the 'User' role
+        # Here 'role_id = 1' represents the 'User' role
         new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf, role_id = 1)
         if new_user.is_valid:
             db.add(new_user)

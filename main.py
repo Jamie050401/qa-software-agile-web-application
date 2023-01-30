@@ -10,14 +10,18 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
+import db as Database
 import web as Website
 
 application = Website.create_application()
 
 # TODO - Replace the favicon.ico with actual favicon ...
+# TODO - Recreate virtual environment (named as .venv)
 # TODO - Implement external config file to house options e.g. is_debug
 # TODO - Configure logic to allow passing of config file via dependency injection
 if __name__ == '__main__':
+    Database.create_database()
+    
     ip_address = "127.0.0.1"
     is_debug = True
     Website.run_application(application, ip_address, is_debug)
