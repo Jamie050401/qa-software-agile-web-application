@@ -33,13 +33,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
-                    {% if user.is_authenticated %}
+                    <!-- TODO - Implement new way of determing if user is authenticated - to control which of the below are visible -->
                     <a class="nav-item nav-link" id="index" href="/">Home</a>
                     <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                    {% else %}
                     <a class="nav-item nav-link" id="login" href="/login">Login</a>
                     <a class="nav-item nav-link" id="register" href="/register">Register</a>
-                    {% endif %}
                 </div>
             </div>
         </nav>

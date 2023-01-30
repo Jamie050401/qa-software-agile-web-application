@@ -365,3 +365,6 @@ FodyWeavers.xsd
 # CUSTOM
 randomJunk/
 .vscode/
+sql/role_select.sql
+sql/user_delete.sql
+sql/user_select.sql

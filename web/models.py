@@ -11,25 +11,27 @@
 #################################################################################################
 
 from flask import flash
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash
+from sqlalchemy import Column, Integer, String, ForeignKey
 
-from . import db
+from . import db_base
 
-class Role(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(60), unique = True, nullable = False)
-    users = db.relationship("User")
+class Role(db_base):
+    __tablename__ = "role"
+    
+    id = Column(Integer, primary_key = True, index = True)
+    name = Column(String(60), unique = True, nullable = False)
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key = True)
-    role_id = db.Column(db.Integer, db.ForeignKey("role.id"))
-    email = db.Column(db.String(60), unique = True, nullable = False)
-    first_name = db.Column(db.String(60), nullable = False)
-    password = db.Column(db.String(60), nullable = False)
+class User(db_base):
+    __tablename__ = "user"
+    
+    id = Column(Integer, primary_key = True, index = True)
+    role_id = Column(Integer, ForeignKey("role.id"), nullable = False)
+    email = Column(String(60), unique = True, nullable = False)
+    first_name = Column(String(60), nullable = False)
+    password = Column(String(255), nullable = False)
     is_valid = True
     
-    def __init__(self, email : str, first_name : str, password : str, password_conf : str):
+    def __init__(self, email : str, first_name : str, password : str, password_conf : str, role_id : int):
         # TODO - Expand and improve these data validation checks: check for invalid characters, validate emails i.e. must have @ symbol, etc.
         def validate_user(email : str, first_name : str, password : str, password_conf : str):
             is_valid = True
@@ -58,9 +60,10 @@ class User(db.Model, UserMixin):
         
         is_valid = validate_user(email, first_name, password, password_conf)
         
+        self.role_id = role_id
         self.email = email
         self.first_name = first_name
-        self.password = generate_password_hash(password, method="sha256")
+        self.password = password # TODO - Hash password here ...
         self.is_valid = is_valid
 
 #################################################################################################

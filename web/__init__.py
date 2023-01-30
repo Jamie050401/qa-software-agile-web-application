@@ -10,23 +10,31 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from os import urandom
+from os import path, urandom
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-db = SQLAlchemy()
-DB_NAME = "database.db"
+DB_NAME = "sql/database.db"
+SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
-def create_database(application : Flask):
-    with application.app_context():
-        db.create_all()
+db_base = declarative_base()
+db_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args = {"check_same_thread": False})
+session_local = sessionmaker(autocommit = False, autoflush = False, bind = db_engine)
+
+def create_database():
+    from . import models
+    db = session_local()
+    
+    if not path.exists(DB_NAME):
+        models.db_base.metadata.create_all(bind = db_engine)
+        # TODO - Populate database ...
+    
+    db.close()
 
 def create_application():
     application = Flask(__name__)
     application.config['SECRET_KEY'] = urandom(12)
-    application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(application)
     
     from .views import views
     from .auth import auth
@@ -36,15 +44,16 @@ def create_application():
     
     from .models import User
     
-    create_database(application)
+    create_database()
     
-    login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
-    login_manager.init_app(application)
+    # TODO - Implement new login manager
+    #login_manager = LoginManager()
+    #login_manager.login_view = "auth.login"
+    #login_manager.init_app(application)
     
-    @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(int(id))
+    #@login_manager.user_loader
+    #def load_user(id):
+    #    return User.query.get(int(id))
     
     return application
 
