@@ -29,6 +29,7 @@ class User(db_base):
     email = Column(String(60), unique = True, nullable = False)
     first_name = Column(String(60), nullable = False)
     password = Column(String(255), nullable = False)
+    profile_image = Column(String(255), nullable = True)
     is_valid = True
     
     def __init__(self):

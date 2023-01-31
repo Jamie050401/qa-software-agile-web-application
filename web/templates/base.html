@@ -22,15 +22,15 @@
         <title>{% block title %} {% endblock %}</title>
     </head>
     <body>
-        <main class="d-flex flex-nowrap" style="height:100vh;">
+        <main class="d-flex flex-nowrap" style="height:90vh;">
             <!-- Sidebar -->
             <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <!-- TODO - Add icon here -->
                     <span class="fs-4">Sidebar</span>
                 </a>
-                {% if user.is_authenticated %}
                 <hr>
+                {% if user.is_authenticated %}
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="/" class="nav-link active" aria-current="page">
@@ -63,9 +63,7 @@
                         </a>
                     </li>
                 </ul>
-                <hr>
                 {% else %}
-                <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="/" class="nav-link active" aria-current="page">
@@ -74,26 +72,6 @@
                         </a>
                     </li>
                 </ul>
-                <hr>
-                {% endif %}
-                <div id="sidebar-blankspace" class="">
-
-                </div>
-                {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- TODO - Replace the image here with the users profile image -->
-                        <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
-                        <strong>{{user.first_name}}</strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                    </ul>
-                </div>
                 {% endif %}
             </div>
 
@@ -131,11 +109,53 @@
                 </div>
 
                 <!-- Replaceable Content Block -->
-                <div id="content" class="container-fluid" style="height:100vh;">
+                <div id="content" class="container-fluid">
                     {% block content %} {% endblock %}
                 </div>
             </div>
         </main>
+
+        <!-- Footer -->
+        <div id="footer" class="d-flex flex-nowrap" style="height:10vh;">
+            <!-- Extends the sidebar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
+                <hr>
+                <div id="sidebar-blankspace" class=""></div>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.profile_image %}
+                        <img src={{user.profile_image}} alt="" class="rounded-circle me-2" width="32" height="32">
+                        {% endif %}
+                        <strong>{{user.first_name}}</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item disabled">{{user.role_name}}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 85%;">
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                        <!-- TODO - Add icon here -->
+                    </a>
+                    <span class="mb-3 mb-md-0 text-muted">2023 - QA Web Application</span>
+                </div>
+            
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                </ul>
+            </footer>
+        </div>
 
         <!-- Bootstrap JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

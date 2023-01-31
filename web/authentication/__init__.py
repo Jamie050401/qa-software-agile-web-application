@@ -17,6 +17,7 @@ class User():
     user_id = 0
     role_name = ""
     first_name = "Anonymous"
+    profile_image = ""
     is_authenticated = False
     is_existing_user = False
     
@@ -24,12 +25,14 @@ class User():
         self.user_id = user.id
         self.role_name = user.role_name
         self.first_name = user.first_name
+        self.profile_image = user.profile_image
         self.is_authenticated = True
     
     def logout(self):
         self.user_id = 0
         self.role_name = ""
         self.first_name = "Anonymous"
+        self.profile_image = ""
         self.is_authenticated = False
         self.is_existing_user = True
 

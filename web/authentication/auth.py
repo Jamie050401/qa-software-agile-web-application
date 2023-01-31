@@ -46,7 +46,7 @@ def logout():
     current_user.logout()
     return redirect(url_for("auth.login"))
 
-@auth.route('/register')
+@auth.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         db = session_local()
