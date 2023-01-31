@@ -21,7 +21,6 @@ if __name__ == '__main__':
     ip_address = "127.0.0.1"
     is_debug = True
     Website.run_application(application, ip_address, is_debug)
-    
 
 #################################################################################################
 # File: main.py                                                                                 #
