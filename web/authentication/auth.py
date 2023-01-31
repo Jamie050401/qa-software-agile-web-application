@@ -34,10 +34,8 @@ def login():
                 current_user.login(user)
                 db.close()
                 return redirect(url_for("views.index"))
-            else:
-                flash("Incorrect email or password, please try again.", category = "failure")
-        else:
-            flash("Incorrect email or password, please try again.", category = "failure")
+        
+        flash("Incorrect email or password, please try again.", category = "failure")
         
         db.close()
             
