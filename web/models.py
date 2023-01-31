@@ -33,7 +33,7 @@ class User(db_base):
     
     def __init__(self):
         self.role_name = "User"
-        self.email = "name@email.com"
+        self.email = "name@example.com"
         self.first_name = "Name"
         self.password = generate_password_hash("password", "sha256")
         self.is_valid = True

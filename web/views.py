@@ -20,8 +20,11 @@ views = Blueprint('views', __name__)
 def index():
     if current_user.is_authenticated:
         return render_template("index.html", user = current_user)
-    else:
+    
+    if current_user.is_existing_user:
         return redirect(url_for("auth.login"))
+    else:
+        return redirect(url_for("auth.register"))
     
 #################################################################################################
 # File: views.py                                                                                #

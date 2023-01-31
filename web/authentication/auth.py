@@ -48,7 +48,7 @@ def logout():
     current_user.logout()
     return redirect(url_for("auth.login"))
 
-@auth.route('/register', methods=["GET", "POST"])
+@auth.route('/register')
 def register():
     if request.method == "POST":
         db = session_local()
@@ -62,7 +62,7 @@ def register():
         if user:
             flash("Email already exists!", category = "failure")
             db.close()
-            return redirect(url_for("auth.register"))
+            return redirect(url_for("views.index"))
         
         new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf, role_name = "User")
         if new_user.is_valid:
@@ -74,7 +74,7 @@ def register():
             return redirect(url_for("views.index"))
         
         db.close()
-        
+    
     return render_template("register.html", user = current_user)
 
 #################################################################################################
