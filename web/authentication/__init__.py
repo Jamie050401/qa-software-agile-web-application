@@ -14,17 +14,17 @@ from web.models import User
 
 class User():
     user_id = 0
-    role_id = 0
+    role_name = ""
     is_authenticated = False
     
     def login(self, user : User):
         self.user_id = user.id
-        self.role_id = user.role_id
+        self.role_name = user.role_name
         self.is_authenticated = True
     
     def logout(self):
         self.user_id = 0
-        self.role_id = 0
+        self.role_name = ""
         self.is_authenticated = False
 
 # TODO - Determine if this is appropriate - may result in only one user across the entire website

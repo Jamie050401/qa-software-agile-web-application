@@ -23,9 +23,7 @@ def create_application():
     application.register_blueprint(views, url_prefix='/')
     application.register_blueprint(auth, url_prefix='/')
     
-    from web.models import User
-    
-    # TODO - Implement new login manager
+    #from web.models import User
     
     return application
 

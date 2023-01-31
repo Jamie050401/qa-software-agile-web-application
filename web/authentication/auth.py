@@ -64,8 +64,7 @@ def register():
             db.close()
             return redirect(url_for("auth.register"))
         
-        # Here 'role_id = 1' represents the 'User' role
-        new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf, role_id = 1)
+        new_user = User(email = email, first_name = first_name, password = password, password_conf = password_conf, role_name = "User")
         if new_user.is_valid:
             db.add(new_user)
             db.commit()
