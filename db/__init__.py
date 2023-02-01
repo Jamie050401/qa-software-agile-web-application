@@ -20,8 +20,12 @@ from db import models
 DB_NAME = "db/database.db"
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
-database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
-session_local = sessionmaker(autocommit=False, autoflush=False, bind=database_engine)
+database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={
+                                "check_same_thread": False})
+
+session_local = sessionmaker(
+    autocommit=False, autoflush=False, bind=database_engine)
+
 
 def get_queries():
     with open("db/sql/models/db_setup.sql", encoding="utf-8") as file:
@@ -29,14 +33,17 @@ def get_queries():
     queries = file_queries.split("||")
     return queries
 
+
 def create_database():
     database = session_local()
 
     if not path.exists(DB_NAME):
-        models.database_declarative_base.metadata.create_all(bind=database_engine)
+        models.database_declarative_base.metadata.create_all(
+            bind=database_engine)
         queries = get_queries()
         for query in queries:
-            modified_query = query.replace("replace_password", generate_password_hash("password", "sha256"))
+            modified_query = query.replace(
+                "replace_password", generate_password_hash("password", "sha256"))
             database.execute(text(modified_query))
         database.commit()
 

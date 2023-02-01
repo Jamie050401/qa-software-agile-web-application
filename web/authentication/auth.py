@@ -19,6 +19,7 @@ from web.authentication import current_user
 
 auth = Blueprint('auth', __name__)
 
+
 @auth.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -41,10 +42,12 @@ def login():
 
     return render_template("login.html", user=current_user)
 
+
 @auth.route('/logout')
 def logout():
     current_user.logout()
     return redirect(url_for("auth.login"))
+
 
 @auth.route('/register', methods=["GET", "POST"])
 def register():

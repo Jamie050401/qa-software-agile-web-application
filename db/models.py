@@ -17,10 +17,12 @@ from werkzeug.security import generate_password_hash
 
 database_declarative_base = declarative_base()
 
+
 class Role(database_declarative_base):
     __tablename__ = "role"
 
     name = Column(String(60), primary_key=True)
+
 
 class User(database_declarative_base):
     __tablename__ = "user"
@@ -38,7 +40,8 @@ class User(database_declarative_base):
             is_valid = True
             if len(email) < 4:
                 is_valid = False
-                flash("Email must be greater than 3 characters.", category="failure")
+                flash("Email must be greater than 3 characters.",
+                      category="failure")
             if len(email) > 60:
                 is_valid = False
                 flash("Email cannot exceed 60 characters.", category="failure")
@@ -48,16 +51,19 @@ class User(database_declarative_base):
             # TODO - Implement check to ensure email does not contain any other special characters
             if len(first_name) < 2:
                 is_valid = False
-                flash("First name must be greater than 1 character.", category="failure")
+                flash("First name must be greater than 1 character.",
+                      category="failure")
             if len(first_name) > 60:
                 is_valid = False
-                flash("First name cannot exceed 60 characters.", category="failure")
+                flash("First name cannot exceed 60 characters.",
+                      category="failure")
             if password != password_conf:
                 is_valid = False
                 flash("Passwords don't match!", category="failure")
             if len(password) < 12:
                 is_valid = False
-                flash("Passwords must be greater than 11 characters.", category="failure")
+                flash("Passwords must be greater than 11 characters.",
+                      category="failure")
             if len(password) > 60:
                 is_valid = False
                 flash("Passwords cannot exceed 60 characters.", category="failure")

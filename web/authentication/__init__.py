@@ -12,6 +12,7 @@
 
 from db.models import User
 
+
 class AuthUser():
     user_id = 0
     role_name = ""

@@ -16,6 +16,7 @@ from web.authentication import current_user
 
 views = Blueprint('views', __name__)
 
+
 @views.route('/')
 def index():
     if current_user.is_authenticated:

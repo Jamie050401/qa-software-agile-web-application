@@ -16,6 +16,7 @@ from flask import Flask
 from web.views import views
 from web.authentication.auth import auth
 
+
 def create_application():
     application = Flask(__name__)
     application.config['SECRET_KEY'] = urandom(12)
@@ -24,6 +25,7 @@ def create_application():
     application.register_blueprint(auth, url_prefix='/')
 
     return application
+
 
 def run_application(application: Flask, ip_address, is_debug: bool):
     application.run(host=ip_address, port=80, debug=is_debug)
