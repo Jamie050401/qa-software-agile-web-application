@@ -13,7 +13,6 @@
 from db.models import User
 
 class AuthUser():
-    # TODO - When implementing 'remember me' browser cache - should update these initial values with what is present in the browser cache
     user_id = 0
     role_name = ""
     first_name = "Anonymous"
