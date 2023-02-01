@@ -12,35 +12,35 @@
 
 from os import path
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
+
+from db import models
 
 DB_NAME = "db/database.db"
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
-db_base = declarative_base()
-db_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args = {"check_same_thread": False})
-session_local = sessionmaker(autocommit = False, autoflush = False, bind = db_engine)
+database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+session_local = sessionmaker(autocommit=False, autoflush=False, bind=database_engine)
 
 def get_queries():
-    with open("db/sql/models/db_setup.sql") as file:
+    with open("db/sql/models/db_setup.sql", encoding="utf-8") as file:
         file_queries = file.read().replace("\n", " ")
     queries = file_queries.split("||")
     return queries
 
 def create_database():
-    from web import models
-    db = session_local()
-    
+    database = session_local()
+
     if not path.exists(DB_NAME):
-        models.db_base.metadata.create_all(bind = db_engine)
+        models.database_declarative_base.metadata.create_all(bind=database_engine)
         queries = get_queries()
         for query in queries:
             modified_query = query.replace("replace_password", generate_password_hash("password", "sha256"))
-            db.execute(text(modified_query))
-        db.commit()
-    
-    db.close()
+            database.execute(text(modified_query))
+        database.commit()
+
+    database.close()
 
 #################################################################################################
 # File: __init__.py                                                                             #

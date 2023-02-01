@@ -10,17 +10,17 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import db as Database
 import web as Website
+import db as Database
 
 application = Website.create_application()
 
 if __name__ == '__main__':
     Database.create_database()
-    
-    ip_address = "127.0.0.1"
-    is_debug = True
-    Website.run_application(application, ip_address, is_debug)
+
+    IP_ADDRESS = "127.0.0.1"
+    IS_DEBUG = True
+    Website.run_application(application, IP_ADDRESS, IS_DEBUG)
 
 #################################################################################################
 # File: main.py                                                                                 #

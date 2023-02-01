@@ -13,22 +13,20 @@
 from os import urandom
 from flask import Flask
 
+from web.views import views
+from web.authentication.auth import auth
+
 def create_application():
     application = Flask(__name__)
     application.config['SECRET_KEY'] = urandom(12)
-    
-    from web.views import views
-    from web.authentication.auth import auth
-    
+
     application.register_blueprint(views, url_prefix='/')
     application.register_blueprint(auth, url_prefix='/')
-    
-    #from web.models import User
-    
+
     return application
 
-def run_application(application : Flask, ip_address, is_debug : bool):
-    application.run(host = ip_address, port = 80, debug = is_debug)
+def run_application(application: Flask, ip_address, is_debug: bool):
+    application.run(host=ip_address, port=80, debug=is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #
