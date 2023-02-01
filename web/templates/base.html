@@ -24,13 +24,13 @@
     <body>
         <main class="d-flex flex-nowrap" style="height:90vh;">
             <!-- Sidebar -->
+            {% if user.is_authenticated %}
             <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <!-- TODO - Add icon here -->
-                    <span class="fs-4">Sidebar</span>
+                    <span class="fs-4">QA Web Application</span>
                 </a>
                 <hr>
-                {% if user.is_authenticated %}
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="/" class="nav-link active" aria-current="page">
@@ -41,42 +41,34 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link text-white" aria-current="page">
                             <!-- TODO - Add icon here -->
-                            Section
+                            Tickets
+                        </a>
+                    </li>
+                    {% if user.role_name == "Admin" %}
+                    <hr>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">
+                            <!-- TODO - Add icon here -->
+                            Users
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-white" aria-current="page">
                             <!-- TODO - Add icon here -->
-                            Section
+                            Roles
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white" aria-current="page">
-                            <!-- TODO - Add icon here -->
-                            Section
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-white" aria-current="page">
-                            <!-- TODO - Add icon here -->
-                            Section
-                        </a>
-                    </li>
+                    {% endif %}
                 </ul>
-                {% else %}
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link active" aria-current="page">
-                            <!-- TODO - Add icon here -->
-                            Home
-                        </a>
-                    </li>
-                </ul>
-                {% endif %}
             </div>
+            {% endif %}
 
             <!-- Content -->
+            {% if user.is_authenticated %}
             <div id="content_body" style="width: 85%;">
+            {% else %}
+            <div id="content_body" style="width: 100%;">
+            {% endif %}
                 <!-- Alerts -->
                 <div id="alerts">
                     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -118,10 +110,10 @@
         <!-- Footer -->
         <div id="footer" class="d-flex flex-nowrap" style="height:10vh;">
             <!-- Extends the sidebar -->
+            {% if user.is_authenticated %}
             <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
                 <hr>
                 <div id="sidebar-blankspace" class=""></div>
-                {% if user.is_authenticated %}
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         {% if user.profile_image %}
@@ -138,10 +130,14 @@
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
-                {% endif %}
             </div>
+            {% endif %}
 
+            {% if user.is_authenticated %}
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 85%;">
+            {% else %}
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 100%;">
+            {% endif %}
                 <div class="col-md-4 d-flex align-items-center">
                     <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                         <!-- TODO - Add icon here -->
