@@ -30,33 +30,35 @@ if __name__ == '__main__':
 # Copyright (c) Jamie Allen. All Rights Reserved.                                               #
 #################################################################################################
 
+# TODO - Finish adding references here
+
 #################################################################################################
 # References:                                                                                   #
 #                                                                                               #
 # Python is used throughout this application. Other Packages are as follows:                    #
 #                                                                                               #
-# Python (xxxx) TODO - Finish Python reference here ...                                         #
+# Python (xxxx) Finish Python reference here ...                                                #
 #                                                                                               #
-# Flask (xxxx) TODO - Finish reference here ...                                                 #
+# Flask (xxxx) Finish reference here ...                                                        #
 #                                                                                               #
-# Flask SQL Alchemy (xxxx) TODO - Finish reference here ...                                     #
+# Flask SQL Alchemy (xxxx) Finish reference here ...                                            #
 #                                                                                               #
-# Flask Login (xxxx) TODO - Finish reference here ...                                           #
+# Flask Login (xxxx) Finish reference here ...                                                  #
 #                                                                                               #
-# pytest (xxxx) TODO - Finish reference here ...                                                #
+# pytest (xxxx) Finish reference here ...                                                       #
 #                                                                                               #
-# Bootstrap (xxxx) TODO - Finish reference here ...                                             #
+# Bootstrap (xxxx) Finish reference here ...                                                    #
 #                                                                                               #
-# TODO - Add references to other packages here ...                                              #
+# Add references to other packages here ...                                                     #
 #                                                                                               #
 # References used within this application are as follows:                                       #
 #                                                                                               #
-# Flask Tutorial for Beginners (2022) TODO - Finish reference here ...                          #
+# Flask Tutorial for Beginners (2022) Finish reference here ...                                 #
 #                                                                                               #
-# HTML and CSS Tutorial (xxxx) TODO - Finish reference here ...                                 #
+# HTML and CSS Tutorial (xxxx) Finish reference here ...                                        #
 #                                                                                               #
-# Python Website Tutorial (xxxx) TODO - Finish reference here ...                               #
+# Python Website Tutorial (xxxx) Finish reference here ...                                      #
 #                                                                                               #
-# TODO - Add other references here ...                                                          #
+# Add other references here ...                                                                 #
 #                                                                                               #
 #################################################################################################
