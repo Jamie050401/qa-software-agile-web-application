@@ -31,23 +31,32 @@ def get_queries():
     with open("db/sql/models/db_setup.sql", encoding="utf-8") as file:
         file_queries = file.read().replace("\n", " ")
     queries = file_queries.split("||")
+
     return queries
 
 
 def create_database():
     database = session_local()
 
-    if not path.exists(DB_NAME):
-        models.database_declarative_base.metadata.create_all(
-            bind=database_engine)
-        queries = get_queries()
-        for query in queries:
-            modified_query = query.replace(
-                "replace_password", generate_password_hash("password", "sha256"))
-            database.execute(text(modified_query))
-        database.commit()
+    if path.exists(DB_NAME):
+        database.close()
+        return None
+
+    # Creates the tables within the database
+    models.database_declarative_base.metadata.create_all(
+        bind=database_engine)
+
+    # Populates the database tables with initial data
+    queries = get_queries()
+    for query in queries:
+        modified_query = query.replace(
+            "replace_password", generate_password_hash("password", "sha256"))
+        database.execute(text(modified_query))
+    database.commit()
 
     database.close()
+
+    return None
 
 #################################################################################################
 # File: __init__.py                                                                             #
