@@ -15,6 +15,8 @@ import db as Database
 
 application = Website.create_application()
 
+# TODO - Refactor functions throughout application to utilise the functional concept: 'each function should only do one thing'
+
 if __name__ == '__main__':
     Database.create_database()
 

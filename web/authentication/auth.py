@@ -63,6 +63,9 @@ def register():
     password = request.form.get("password_first")
     password_conf = request.form.get("password_second")
 
+    # Ensures the user is returned to the registration screen if the validation fails
+    current_user.register()
+
     user = database.query(User).filter(User.email == email).first()
     if user:
         flash("Email already exists!", category="failure")
