@@ -27,6 +27,10 @@ class AuthUser():
         self.first_name = user.first_name
         self.profile_image = user.profile_image
         self.is_authenticated = True
+        self.is_existing_user = True
+
+    def login_failed(self):
+        self.is_existing_user = True
 
     def logout(self):
         self.user_id = 0
@@ -34,7 +38,6 @@ class AuthUser():
         self.first_name = "Anonymous"
         self.profile_image = ""
         self.is_authenticated = False
-        self.is_existing_user = True
 
     def register(self):
         self.is_existing_user = False

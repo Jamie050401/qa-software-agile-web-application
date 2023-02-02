@@ -38,6 +38,9 @@ def login():
             database.close()
             return redirect(url_for("views.index"))
 
+    # Ensures the user remains on the login screen should a login attempt fail
+    current_user.login_failed()
+
     flash("Incorrect email or password, please try again.", category="failure")
 
     database.close()
