@@ -22,25 +22,27 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-        database = session_local()
+    if request.method == "GET":
+        return render_template("login.html", user=current_user)
 
-        email = request.form.get("email")
-        password = request.form.get("password")
+    database = session_local()
 
-        user = database.query(User).filter(User.email == email).first()
-        if user:
-            if check_password_hash(user.password, password):
-                flash("Logged in successfully!", category="success")
-                current_user.login(user)
-                database.close()
-                return redirect(url_for("views.index"))
+    email = request.form.get("email")
+    password = request.form.get("password")
 
-        flash("Incorrect email or password, please try again.", category="failure")
+    user = database.query(User).filter(User.email == email).first()
+    if user:
+        if check_password_hash(user.password, password):
+            flash("Logged in successfully!", category="success")
+            current_user.login(user)
+            database.close()
+            return redirect(url_for("views.index"))
 
-        database.close()
+    flash("Incorrect email or password, please try again.", category="failure")
 
-    return render_template("login.html", user=current_user)
+    database.close()
+
+    return None
 
 
 @auth.route('/logout')
@@ -51,34 +53,36 @@ def logout():
 
 @auth.route('/register', methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-        database = session_local()
+    if request.method == "GET":
+        return render_template("register.html", user=current_user)
 
-        email = request.form.get("email")
-        first_name = request.form.get("first_name")
-        password = request.form.get("password_first")
-        password_conf = request.form.get("password_second")
+    database = session_local()
 
-        user = database.query(User).filter(User.email == email).first()
-        if user:
-            flash("Email already exists!", category="failure")
-            database.close()
-            return redirect(url_for("views.index"))
+    email = request.form.get("email")
+    first_name = request.form.get("first_name")
+    password = request.form.get("password_first")
+    password_conf = request.form.get("password_second")
 
-        new_user = User(email=email, first_name=first_name, password=password,
-                        password_conf=password_conf, role_name="User")
-
-        if new_user.is_valid:
-            database.add(new_user)
-            database.commit()
-            flash("User created!", category="success")
-            current_user.login(new_user)
-            database.close()
-            return redirect(url_for("views.index"))
-
+    user = database.query(User).filter(User.email == email).first()
+    if user:
+        flash("Email already exists!", category="failure")
         database.close()
+        return redirect(url_for("views.index"))
 
-    return render_template("register.html", user=current_user)
+    new_user = User(email=email, first_name=first_name, password=password,
+                    password_conf=password_conf, role_name="User")
+
+    if new_user.is_valid:
+        database.add(new_user)
+        database.commit()
+        flash("User created!", category="success")
+        current_user.login(new_user)
+        database.close()
+        return redirect(url_for("views.index"))
+
+    database.close()
+
+    return None
 
 #################################################################################################
 # File: auth.py                                                                                 #
