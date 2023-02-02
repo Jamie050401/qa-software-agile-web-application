@@ -37,40 +37,40 @@ class User(database_declarative_base):
 
     def __init__(self, email, first_name, password, password_conf, role_name):
         def validate_user(email: str, first_name, password, password_conf):
-            is_valid = True
-            if len(email) < 4:
-                is_valid = False
+            is_valid = False
+            if len(email) == 0:
+                flash("You must provide an email address!", category="failure")
+            elif len(first_name) == 0:
+                flash("You must provide a first name!", category="failure")
+            elif len(password) == 0:
+                flash("You must provide a password!", category="failure")
+            elif len(email) < 4:
                 flash("Email must be greater than 3 characters.",
                       category="failure")
-            if len(email) > 60:
-                is_valid = False
+            elif len(email) > 60:
                 flash("Email cannot exceed 60 characters.", category="failure")
-            if not email.__contains__("@"):
-                is_valid = False
+            elif not email.__contains__("@"):
                 flash("Email provided is not valid!", category="failure")
             # TODO - Implement check to ensure email does not contain any other special characters
-            if len(first_name) < 2:
-                is_valid = False
+            elif len(first_name) < 2:
                 flash("First name must be greater than 1 character.",
                       category="failure")
-            if len(first_name) > 60:
-                is_valid = False
+            elif len(first_name) > 60:
                 flash("First name cannot exceed 60 characters.",
                       category="failure")
-            if password != password_conf:
-                is_valid = False
+            elif password != password_conf:
                 flash("Passwords don't match!", category="failure")
-            if len(password) < 12:
-                is_valid = False
+            elif len(password) < 12:
                 flash("Passwords must be greater than 11 characters.",
                       category="failure")
-            if len(password) > 60:
-                is_valid = False
+            elif len(password) > 60:
                 flash("Passwords cannot exceed 60 characters.", category="failure")
             # TODO - Implement check to ensure there is at least 1 upper case letter
             # TODO - Implement check to ensure there is at least 1 lower case letter
             # TODO - Implement check to ensure there is at least 1 number
             # TODO - Implement check to ensure there is at least 1 special character
+            else:
+                is_valid = True
 
             return is_valid
 

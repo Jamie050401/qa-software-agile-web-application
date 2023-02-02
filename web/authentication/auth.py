@@ -45,7 +45,7 @@ def login():
 
     database.close()
 
-    return None
+    return redirect(url_for("auth.login"))
 
 
 @auth.route('/logout')
@@ -88,7 +88,7 @@ def register():
 
     database.close()
 
-    return None
+    return redirect(url_for("auth.register"))
 
 #################################################################################################
 # File: auth.py                                                                                 #
