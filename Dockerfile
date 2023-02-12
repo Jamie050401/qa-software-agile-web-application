@@ -24,13 +24,15 @@ RUN pip3 install --no-cache \
 ENV IP_ADDRESS=0.0.0.0 \
     PORT=8000 \
     IS_DEBUG=FALSE \
-    WORKER_THREADS=1
+    WORKER_THREADS=1 \
+    GIT_REPOSITORY=https://github.com/Jamie050401/qaWebApplication.git \
+    GIT_BRANCH=my/ALLENJ/development
 
 # Fetch the application code
 RUN mkdir /app \
     cd /app \
-    git clone https://github.com/Jamie050401/qaWebApplication.git \
-    git pull origin my/ALLENJ/development
+    git clone ${GIT_REPOSITORY} \
+    git pull origin ${GIT_BRANCH}
 
 #CMD ["gunicorn", "-w", ${WORKER_THREADS}, "-b", "${IP_ADDRESS}:${PORT}", "main:application"]
 

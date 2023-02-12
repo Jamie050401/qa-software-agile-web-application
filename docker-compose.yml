@@ -41,3 +41,5 @@ services:
             - PORT=8000
             - IS_DEBUG=FALSE
             - WORKER_THREADS=12
+            - GIT_REPOSITORY=https://github.com/Jamie050401/qaWebApplication.git
+            - GIT_BRANCH=my/ALLENJ/development
