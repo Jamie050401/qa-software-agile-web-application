@@ -33,4 +33,4 @@ ENV IP_ADDRESS=0.0.0.0 \
 
 EXPOSE ${PORT}
 
-ENTRYPOINT ["/usr/bin/gunicorn", "-w", ${WORKER_THREADS}, "-b", "${IP_ADDRESS}:${PORT}", "main:app"]
+CMD /usr/bin/gunicorn -w ${WORKER_THREADS} -b "${IP_ADDRESS}:${PORT}" "main:app"
