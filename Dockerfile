@@ -1,6 +1,12 @@
 # docker build -t qa_web_application ./
 FROM alpine:latest
 
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
+    python3 -m ensurepip && \
+    pip3 install --no-cache --upgrade pip setuptools \
+    pip3 install --no-cache --upgrade venv \
+    source .venv/Scripts/activate
+
 ENV IP_ADDRESS=0.0.0.0 \
     PORT=8000 \
     IS_DEBUG=FALSE \
