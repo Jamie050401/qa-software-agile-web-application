@@ -29,8 +29,8 @@ ENV IP_ADDRESS=0.0.0.0 \
     GIT_BRANCH=my/ALLENJ/development
 
 # Fetch the application code
-RUN mkdir /app \
-    cd /app \
+RUN mkdir /Git.Repositories \
+    cd /Git.Repositories \
     git clone ${GIT_REPOSITORY} \
     git pull origin ${GIT_BRANCH}
 
