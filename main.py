@@ -20,20 +20,17 @@ app = Website.create_application()
 
 if __name__ == '__main__':
     IS_PRODUCTION = True
+    IP_ADDRESS = "127.0.0.1"
+    IS_DEBUG = True
 
     if IS_PRODUCTION:
-        Database.create_database()
-
+        IP_ADDRESS = environ['IP_ADDRESS']
+        IS_DEBUG = environ['IS_DEBUG']
         app.wsgi_app = ProxyFix(app.wsgi_app,
                                 x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
-        Website.run_application(
-            app, environ['IP_ADDRESS'], environ['IS_DEBUG'])
-    else:
-        IP_ADDRESS = "127.0.0.1"
-        IS_DEBUG = True
-        Database.create_database()
-        Website.run_application(app, IP_ADDRESS, IS_DEBUG)
+    Database.create_database()
+    Website.run_application(app, IP_ADDRESS, IS_DEBUG)
 
 
 #################################################################################################
