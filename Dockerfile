@@ -33,5 +33,5 @@ ENV IP_ADDRESS=0.0.0.0 \
 
 EXPOSE ${PORT}
 
-CMD [ "bash", "gunicorn -w "$WORKER_THREADS" -b "$IP_ADDRESS:$PORT" "main:app"" ]
+CMD [ "bash", "gunicorn -w '$WORKER_THREADS' -b '$IP_ADDRESS:$PORT' 'main:app'" ]
 
