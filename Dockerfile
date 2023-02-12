@@ -33,5 +33,4 @@ ENV IP_ADDRESS=0.0.0.0 \
 
 EXPOSE ${PORT}
 
-#ENTRYPOINT ["/usr/bin/gunicorn", "--config", "/gunicorn.conf", "--log-config", "/logging.conf", "-b", ":8000", "myapp:app"]
-#CMD [ "bash", "gunicorn -w '$WORKER_THREADS' -b '$IP_ADDRESS:$PORT' 'main:app'" ]
+ENTRYPOINT ["/usr/bin/gunicorn", "-w", ${WORKER_THREADS}, "-b", "${IP_ADDRESS}:${PORT}", "main:app"]
