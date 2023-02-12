@@ -1,7 +1,11 @@
 # docker build -t qa_web_application ./
 FROM alpine:latest
 
-WORKDIR /docker/Git.Repositories/qaWebApplication
+# Copies application source code into the container's file system
+COPY /docker/Git.Repositories/qaWebApplication /app
+
+# Sets the application source code as the working directory for the rest of this file
+WORKDIR /app
 
 # Fetching generic alpine packages
 RUN apk add --update --no-cache \
