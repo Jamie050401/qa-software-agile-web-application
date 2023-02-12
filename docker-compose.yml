@@ -17,12 +17,12 @@ services:
         container_name: qa-web-application
         restart: always
         networks:
-        web:
-            ipv4_address: 10.8.0.3
-        traefik-authelia_traefik:
-            ipv4_address: 10.5.0.6
+            web:
+                ipv4_address: 10.8.0.3
+            traefik-authelia_traefik:
+                ipv4_address: 10.5.0.6
         ports:
-            - "8000:8000"
+            - "9500:8000"
         labels:
             - "traefik.enable=true"
             - "traefik.docker.network=traefik-authelia_traefik"
@@ -33,12 +33,11 @@ services:
             - "traefik.http.routers.qawebapplication-secure.service=qawebapplication-secure-service"
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=8000"
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.scheme=http"
-        args:
-            - ip_address=10.5.0.6
-            - port=8000
-            - is_debug=False
-            - worker_threads=12
         environment:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/London
+            - IP_ADDRESS=10.5.0.6
+            - PORT=8000
+            - IS_DEBUG=FALSE
+            - WORKER_THREADS=12
