@@ -11,6 +11,7 @@
 #################################################################################################
 
 from os import environ
+# from werkzeug.middleware.proxy_fix import ProxyFix
 
 import web as Website
 import db as Database
@@ -22,6 +23,9 @@ if __name__ == '__main__':
 
     if IS_PRODUCTION:
         Database.create_database()
+
+        # application.wsgi_app = ProxyFix(application.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
         Website.run_application(
             application, environ['IP_ADDRESS'], environ['IS_DEBUG'])
     else:
