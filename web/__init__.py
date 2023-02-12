@@ -18,17 +18,17 @@ from web.authentication.auth import auth
 
 
 def create_application():
-    application = Flask(__name__)
-    application.config['SECRET_KEY'] = urandom(12)
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = urandom(12)
 
-    application.register_blueprint(views, url_prefix='/')
-    application.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(auth, url_prefix='/')
 
-    return application
+    return app
 
 
-def run_application(application: Flask, ip_address, is_debug: bool):
-    application.run(host=ip_address, port=80, debug=is_debug)
+def run_application(app: Flask, ip_address, is_debug: bool):
+    app.run(host=ip_address, port=80, debug=is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #

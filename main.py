@@ -16,7 +16,7 @@ from os import environ
 import web as Website
 import db as Database
 
-application = Website.create_application()
+app = Website.create_application()
 
 if __name__ == '__main__':
     IS_PRODUCTION = True
@@ -24,15 +24,15 @@ if __name__ == '__main__':
     if IS_PRODUCTION:
         Database.create_database()
 
-        # application.wsgi_app = ProxyFix(application.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+        # app.wsgi_app = ProxyFix(application.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
         Website.run_application(
-            application, environ['IP_ADDRESS'], environ['IS_DEBUG'])
+            app, environ['IP_ADDRESS'], environ['IS_DEBUG'])
     else:
         IP_ADDRESS = "127.0.0.1"
         IS_DEBUG = True
         Database.create_database()
-        Website.run_application(application, IP_ADDRESS, IS_DEBUG)
+        Website.run_application(app, IP_ADDRESS, IS_DEBUG)
 
 
 #################################################################################################
