@@ -27,7 +27,7 @@ RUN pip3 install --no-cache \
 
 # Declaring environment variables for the container
 ENV IP_ADDRESS=0.0.0.0 \
-    PORT=8000 \
+    PORT=80 \
     IS_DEBUG=FALSE \
     WORKER_THREADS=1
 

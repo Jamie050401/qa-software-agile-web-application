@@ -22,7 +22,7 @@ services:
             traefik-authelia_traefik:
                 ipv4_address: 10.5.0.6
         ports:
-            - "9500:8000"
+            - "9500:9500"
         labels:
             - "traefik.enable=true"
             - "traefik.docker.network=traefik-authelia_traefik"
@@ -31,13 +31,13 @@ services:
             - "traefik.http.routers.qawebapplication-secure.rule=Host(`www.jnetworks.ovh`)"
             - "traefik.http.routers.qawebapplication-secure.tls=true"
             - "traefik.http.routers.qawebapplication-secure.service=qawebapplication-secure-service"
-            - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=8000"
+            - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=9500"
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.scheme=http"
         environment:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/London
-            - IP_ADDRESS=10.5.0.6
-            - PORT=8000
+            - IP_ADDRESS=10.8.0.3
+            - PORT=9500
             - IS_DEBUG=FALSE
             - WORKER_THREADS=12
