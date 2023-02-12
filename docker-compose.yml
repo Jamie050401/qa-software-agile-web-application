@@ -37,7 +37,7 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/London
-            - IP_ADDRESS=10.8.0.3
+            - IP_ADDRESS=0.0.0.0
             - PORT=9500
             - IS_DEBUG=FALSE
             - WORKER_THREADS=12
