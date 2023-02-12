@@ -3,8 +3,7 @@ FROM alpine:latest
 
 # Fetching generic alpine packages
 RUN apk add --update --no-cache \
-    bash \
-    git
+    bash
 
 # Setting up Python
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
@@ -24,15 +23,7 @@ RUN pip3 install --no-cache \
 ENV IP_ADDRESS=0.0.0.0 \
     PORT=8000 \
     IS_DEBUG=FALSE \
-    WORKER_THREADS=1 \
-    GIT_REPOSITORY=https://github.com/Jamie050401/qaWebApplication.git \
-    GIT_BRANCH=my/ALLENJ/development
-
-# Fetch the application code
-RUN mkdir /Git.Repositories \
-    cd /Git.Repositories \
-    git clone ${GIT_REPOSITORY} \
-    git pull origin ${GIT_BRANCH}
+    WORKER_THREADS=1
 
 #CMD ["gunicorn", "-w", ${WORKER_THREADS}, "-b", "${IP_ADDRESS}:${PORT}", "main:application"]
 
