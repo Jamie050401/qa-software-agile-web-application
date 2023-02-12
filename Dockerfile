@@ -18,6 +18,6 @@ ENV IP_ADDRESS=0.0.0.0 \
     IS_DEBUG=FALSE \
     WORKER_THREADS=1
 
-CMD ["gunicorn", "-w", "${WORKER_THREADS}", "-b", "${IP_ADDRESS}:${PORT}", "main:application"]
+CMD ["gunicorn", "-w", ${WORKER_THREADS}, "-b", "${IP_ADDRESS}:${PORT}", "main:application"]
 
 EXPOSE ${PORT}
