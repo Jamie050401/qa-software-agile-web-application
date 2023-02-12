@@ -1,6 +1,9 @@
 # docker build -t qa_web_application ./
 FROM alpine:latest
 
+WORKDIR /app
+COPY /docker/Git.Repositories/qaWebApplication /app
+
 # Fetching generic alpine packages
 RUN apk add --update --no-cache \
     bash
