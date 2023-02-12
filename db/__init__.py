@@ -36,11 +36,10 @@ def get_queries():
 
 
 def create_database():
-    database = session_local()
-
     if path.exists(DB_NAME):
-        database.close()
         return None
+
+    database = session_local()
 
     # Creates the tables within the database
     models.database_declarative_base.metadata.create_all(

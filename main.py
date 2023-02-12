@@ -10,19 +10,26 @@
 # Date:     xx/xx/23                                                                            #
 #################################################################################################
 
+from os import environ
+
 import web as Website
 import db as Database
 
 application = Website.create_application()
 
-# TODO - Refactor functions throughout application to utilise the functional concept: 'each function should only do one thing'
-
 if __name__ == '__main__':
-    Database.create_database()
+    IS_PRODUCTION = True
 
-    IP_ADDRESS = "127.0.0.1"
-    IS_DEBUG = True
-    Website.run_application(application, IP_ADDRESS, IS_DEBUG)
+    if IS_PRODUCTION:
+        Database.create_database()
+        Website.run_application(
+            application, environ['IP_ADDRESS'], environ['IS_DEBUG'])
+    else:
+        IP_ADDRESS = "127.0.0.1"
+        IS_DEBUG = True
+        Database.create_database()
+        Website.run_application(application, IP_ADDRESS, IS_DEBUG)
+
 
 #################################################################################################
 # File: main.py                                                                                 #
