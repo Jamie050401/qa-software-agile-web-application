@@ -2,9 +2,6 @@
 FROM alpine:latest
 
 WORKDIR /docker/Git.Repositories/qaWebApplication
-COPY /docker/Git.Repositories/qaWebApplication /app
-
-WORKDIR /app
 
 # Fetching generic alpine packages
 RUN apk add --update --no-cache \
