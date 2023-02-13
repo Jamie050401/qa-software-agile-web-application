@@ -11,24 +11,23 @@
 #################################################################################################
 
 from flask import flash
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from werkzeug.security import generate_password_hash
 
 database_declarative_base = declarative_base()
 
+roles = ["User", "Admin"]
 
-class Role(database_declarative_base):
-    __tablename__ = "role"
-
-    name = Column(String(60), primary_key=True)
+# class Ticket(database_declarative_base):
+#    __tablename__ = "ticket"
 
 
 class User(database_declarative_base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, index=True)
-    role_name = Column(String, ForeignKey("role.name"), nullable=False)
+    role_name = Column(String(5), nullable=False)
     email = Column(String(60), unique=True, nullable=False)
     first_name = Column(String(60), nullable=False)
     password = Column(String(255), nullable=False)
@@ -36,7 +35,7 @@ class User(database_declarative_base):
     is_valid = True
 
     def __init__(self, email, first_name, password, password_conf, role_name):
-        def validate_user(email: str, first_name, password, password_conf):
+        def validate_user(email: str, first_name, password, password_conf, role_name):
             is_valid = False
             if len(email) == 0:
                 flash("You must provide an email address!", category="failure")
@@ -69,12 +68,15 @@ class User(database_declarative_base):
             # TODO - Implement check to ensure there is at least 1 lower case letter
             # TODO - Implement check to ensure there is at least 1 number
             # TODO - Implement check to ensure there is at least 1 special character
+            elif role_name not in roles:
+                flash("Invalid role assigned to user!", category="failure")
             else:
                 is_valid = True
 
             return is_valid
 
-        is_valid = validate_user(email, first_name, password, password_conf)
+        is_valid = validate_user(
+            email, first_name, password, password_conf, role_name)
 
         self.role_name = role_name
         self.email = email

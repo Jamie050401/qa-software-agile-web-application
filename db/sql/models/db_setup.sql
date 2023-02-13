@@ -1,6 +1,3 @@
-INSERT INTO role (name)
-VALUES ("User"), ("Admin");
-||
 INSERT INTO user (id, role_name, email, first_name, password)
 VALUES (1, "Admin", "admin@example.com", "Name", "replace_password"), (2, "User", "user@example.com", "Name", "replace_password"), (3, "Admin", "jamie@jnetworks.ovh", "Jamie", "replace_password");
 ||
