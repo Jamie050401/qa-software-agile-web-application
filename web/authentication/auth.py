@@ -7,7 +7,6 @@
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
 # Version:  1.0                                                                                 #
-# Date:     xx/xx/23                                                                            #
 #################################################################################################
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
