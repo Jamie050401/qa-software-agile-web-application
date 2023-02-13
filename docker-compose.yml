@@ -34,10 +34,10 @@ services:
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=9500"
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.scheme=http"
         environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/London
             - IP_ADDRESS=0.0.0.0
             - PORT=9500
             - IS_DEBUG=FALSE
             - WORKER_THREADS=12
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/London
