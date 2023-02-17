@@ -20,9 +20,9 @@ RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python && \
 
 # Setting up packages required for Python Web Application
 RUN pip3 install --no-cache \
-    iniconfig=2.0.0 \
-    Jinja2=3.1.2 \
-    Werkzeug=2.2.2 \
+    iniconfig==2.0.0 \
+    Jinja2==3.1.2 \
+    Werkzeug==2.2.2 \
     Flask==2.2.2 \
     SQLAlchemy==2.0.0 \
     pytest==7.2.1 \
