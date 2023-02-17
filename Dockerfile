@@ -5,6 +5,9 @@ FROM alpine:latest
 COPY . /app
 COPY ./data /data
 
+# Declares the /data folder as a volume mount point
+VOLUME /data
+
 # Sets the application source code as the working directory for the rest of this file
 WORKDIR /app
 
@@ -36,9 +39,6 @@ ENV IP_ADDRESS=0.0.0.0 \
     IS_DEBUG=FALSE \
     WORKERS=1 \
     WORKER_THREADS=1
-
-# Declares the /data folder as a volume mount point
-VOLUME /data
 
 EXPOSE ${PORT}
 
