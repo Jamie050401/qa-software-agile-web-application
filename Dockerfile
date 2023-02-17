@@ -26,7 +26,7 @@ RUN pip3 install --no-cache \
     Flask==2.2.2 \
     SQLAlchemy==2.0.0 \
     pytest==7.2.1 \
-    greenlet=2.0.2 \
+    greenlet==2.0.2 \
     gunicorn==20.1.0
 
 # Declaring environment variables for the container

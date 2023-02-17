@@ -13,7 +13,7 @@ services:
     # QA Web Application
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     qa-web-application:
-        image: qa_web_application:latest
+        image: qa-web-application:latest
         container_name: qa-web-application
         restart: always
         networks:
