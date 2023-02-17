@@ -34,6 +34,7 @@ RUN pip3 install --no-cache \
 ENV IP_ADDRESS=0.0.0.0 \
     PORT=80 \
     IS_DEBUG=FALSE \
+    WORKERS=1 \
     WORKER_THREADS=1
 
 # Declares the /data folder as a volume mount point
@@ -41,4 +42,4 @@ VOLUME /data
 
 EXPOSE ${PORT}
 
-CMD /usr/bin/gunicorn -w ${WORKER_THREADS} -b "${IP_ADDRESS}:${PORT}" "main:app"
+CMD /usr/bin/gunicorn -b "${IP_ADDRESS}:${PORT}" --workers=${WORKERS} --threads=${WORKER_THREADS} "main:app"

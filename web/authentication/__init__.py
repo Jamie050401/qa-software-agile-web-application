@@ -42,7 +42,6 @@ class AuthUser():
         self.is_existing_user = False
 
 
-# TODO - Determine if this is appropriate - may result in only one user across the entire website
 current_user = AuthUser()
 
 #################################################################################################
