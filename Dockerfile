@@ -1,4 +1,4 @@
-# docker build -t qa_web_application ./
+# Command to execute Dockerfile (when inside root directory): docker build -t qa-web-application ./
 FROM alpine:latest
 
 # Copies application source code into the container's file system

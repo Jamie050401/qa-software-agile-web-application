@@ -5,7 +5,7 @@ networks:
         ipam:
             config:
                 - subnet: 10.8.0.0/24
-    traefik-authelia_traefik:
+    traefik_traefik:
         external: true
 
 services:
@@ -19,16 +19,16 @@ services:
         networks:
             web:
                 ipv4_address: 10.8.0.3
-            traefik-authelia_traefik:
+            traefik_traefik:
                 ipv4_address: 10.5.0.6
         ports:
             - "9500:9500"
         labels:
             - "traefik.enable=true"
-            - "traefik.docker.network=traefik-authelia_traefik"
+            - "traefik.docker.network=traefik_traefik"
             - "traefik.http.routers.qawebapplication-secure.entrypoints=websecure"
             - "traefik.http.routers.qawebapplication-secure.middlewares=authelia-secure@docker"
-            - "traefik.http.routers.qawebapplication-secure.rule=Host(`www.jnetworks.ovh`)"
+            - "traefik.http.routers.qawebapplication-secure.rule=Host(`qawebapp.jnetworks.ovh`)"
             - "traefik.http.routers.qawebapplication-secure.tls=true"
             - "traefik.http.routers.qawebapplication-secure.service=qawebapplication-secure-service"
             - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=9500"
