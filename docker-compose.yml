@@ -1,0 +1,46 @@
+version: "2.4"
+
+networks:
+    web:
+        ipam:
+            config:
+                - subnet: 10.8.0.0/24
+    traefik_traefik:
+        external: true
+
+services:
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # QA Web Application
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    qa-web-application:
+        image: qa-web-application:latest
+        container_name: qa-web-application
+        restart: always
+        networks:
+            web:
+                ipv4_address: 10.8.0.3
+            traefik_traefik:
+                ipv4_address: 10.5.0.6
+        ports:
+            - "9500:9500"
+        labels:
+            - "traefik.enable=true"
+            - "traefik.docker.network=traefik_traefik"
+            - "traefik.http.routers.qawebapplication-secure.entrypoints=websecure"
+            - "traefik.http.routers.qawebapplication-secure.middlewares=authelia-secure@docker"
+            - "traefik.http.routers.qawebapplication-secure.rule=Host(`qawebapp.jnetworks.ovh`)"
+            - "traefik.http.routers.qawebapplication-secure.tls=true"
+            - "traefik.http.routers.qawebapplication-secure.service=qawebapplication-secure-service"
+            - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.port=9500"
+            - "traefik.http.services.qawebapplication-secure-service.loadbalancer.server.scheme=http"
+        environment:
+            - IP_ADDRESS=0.0.0.0
+            - PORT=9500
+            - IS_DEBUG=TRUE
+            - WORKERS=3
+            - WORKER_THREADS=3
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/London
+        volumes:
+            - /docker/containers/QAWebApplication/data:/data

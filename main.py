@@ -7,26 +7,33 @@
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
 # Version:  1.0                                                                                 #
-# Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-import db as Database
+from os import environ
+from werkzeug.middleware.proxy_fix import ProxyFix
+from iniconfig import IniConfig
+
 import web as Website
+import db as Database
 
-application = Website.create_application()
+IS_PRODUCTION = True
 
-# TODO - Replace the favicon.ico with actual favicon ...
-# TODO - Recreate virtual environment (named as .venv)
-# TODO - Implement 'remember me' functionalty for both register and login forms
-# TODO - Implement external config file to house options e.g. is_debug
-# TODO - Configure logic to allow passing of config file via dependency injection
+config = IniConfig("data/config.ini")
+
+app = Website.create_application()
+
 if __name__ == '__main__':
+    IP_ADDRESS = config["SETTINGS"]["IP_ADDRESS"]
+    IS_DEBUG = config["SETTINGS"]["IS_DEBUG"] == "True"
+
+    if IS_PRODUCTION:
+        IP_ADDRESS = environ['IP_ADDRESS']
+        IS_DEBUG = environ['IS_DEBUG'] == "TRUE"
+        app.wsgi_app = ProxyFix(app.wsgi_app)
+
     Database.create_database()
-    
-    ip_address = "127.0.0.1"
-    is_debug = True
-    Website.run_application(application, ip_address, is_debug)
-    
+    Website.run_application(app, IP_ADDRESS, IS_DEBUG)
+
 
 #################################################################################################
 # File: main.py                                                                                 #
@@ -36,33 +43,35 @@ if __name__ == '__main__':
 # Copyright (c) Jamie Allen. All Rights Reserved.                                               #
 #################################################################################################
 
+# TODO - Finish adding references here
+
 #################################################################################################
 # References:                                                                                   #
 #                                                                                               #
 # Python is used throughout this application. Other Packages are as follows:                    #
 #                                                                                               #
-# Python (xxxx) TODO - Finish Python reference here ...                                         #
+# Python (xxxx) Finish Python reference here ...                                                #
 #                                                                                               #
-# Flask (xxxx) TODO - Finish reference here ...                                                 #
+# Flask (xxxx) Finish reference here ...                                                        #
 #                                                                                               #
-# Flask SQL Alchemy (xxxx) TODO - Finish reference here ...                                     #
+# Flask SQL Alchemy (xxxx) Finish reference here ...                                            #
 #                                                                                               #
-# Flask Login (xxxx) TODO - Finish reference here ...                                           #
+# Flask Login (xxxx) Finish reference here ...                                                  #
 #                                                                                               #
-# pytest (xxxx) TODO - Finish reference here ...                                                #
+# pytest (xxxx) Finish reference here ...                                                       #
 #                                                                                               #
-# Bootstrap (xxxx) TODO - Finish reference here ...                                             #
+# Bootstrap (xxxx) Finish reference here ...                                                    #
 #                                                                                               #
-# TODO - Add references to other packages here ...                                              #
+# Add references to other packages here ...                                                     #
 #                                                                                               #
 # References used within this application are as follows:                                       #
 #                                                                                               #
-# Flask Tutorial for Beginners (2022) TODO - Finish reference here ...                          #
+# Flask Tutorial for Beginners (2022) Finish reference here ...                                 #
 #                                                                                               #
-# HTML and CSS Tutorial (xxxx) TODO - Finish reference here ...                                 #
+# HTML and CSS Tutorial (xxxx) Finish reference here ...                                        #
 #                                                                                               #
-# Python Website Tutorial (xxxx) TODO - Finish reference here ...                               #
+# Python Website Tutorial (xxxx) Finish reference here ...                                      #
 #                                                                                               #
-# TODO - Add other references here ...                                                          #
+# Add other references here ...                                                                 #
 #                                                                                               #
 #################################################################################################

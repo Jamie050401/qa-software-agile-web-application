@@ -7,28 +7,42 @@
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
 # Version:  1.0                                                                                 #
-# Date:     xx/xx/23                                                                            #
 #################################################################################################
 
-from web.models import User
+from db.models import User
 
-class User():
+
+class AuthUser():
     user_id = 0
-    role_id = 0
+    role_name = ""
+    first_name = "Anonymous"
+    profile_image = ""
     is_authenticated = False
-    
-    def login(self, user : User):
+    is_existing_user = False
+
+    def login(self, user: User):
         self.user_id = user.id
-        self.role_id = user.role_id
+        self.role_name = user.role_name
+        self.first_name = user.first_name
+        self.profile_image = user.profile_image
         self.is_authenticated = True
-    
+        self.is_existing_user = True
+
+    def login_failed(self):
+        self.is_existing_user = True
+
     def logout(self):
         self.user_id = 0
-        self.role_id = 0
+        self.role_name = ""
+        self.first_name = "Anonymous"
+        self.profile_image = ""
         self.is_authenticated = False
 
-# TODO - Determine if this is appropriate - may result in only one user across the entire website
-current_user = User()
+    def register(self):
+        self.is_existing_user = False
+
+
+current_user = AuthUser()
 
 #################################################################################################
 # File: __init__.py                                                                             #

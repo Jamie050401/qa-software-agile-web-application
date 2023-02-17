@@ -14,75 +14,150 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width = device-width, initial-scale = 1"/>
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous"/>
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-              crossorigin="anonymous"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" 
+              href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+              integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+              crossorigin="anonymous">
         <title>{% block title %} {% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbar">
-                <span class="navbar-toggler-icon"/>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <div class="navbar-nav">
-                    {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" id="index" href="/">Home</a>
-                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                    {% else %}
-                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                    <a class="nav-item nav-link" id="register" href="/register">Register</a>
+        <main class="d-flex flex-nowrap" style="height:90vh;">
+            <!-- Sidebar -->
+            {% if user.is_authenticated %}
+            <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <!-- TODO - Add icon here -->
+                    <span class="fs-4">QA Web Application</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active" aria-current="page">
+                            <!-- TODO - Add icon here -->
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">
+                            <!-- TODO - Add icon here -->
+                            Tickets
+                        </a>
+                    </li>
+                    {% if user.role_name == "Admin" %}
+                    <hr>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">
+                            <!-- TODO - Add icon here -->
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white" aria-current="page">
+                            <!-- TODO - Add icon here -->
+                            Roles
+                        </a>
+                    </li>
                     {% endif %}
-                </div>
-            </div>
-        </nav>
-
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-            {% if category == "failure" %}
-            <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% else %}
-            <div class="alert alert-success alert-dismissable fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                </ul>
             </div>
             {% endif %}
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
 
-        <div class="container">{% block content %} {% endblock %}</div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous">
-        </script>
+            <!-- Content -->
+            {% if user.is_authenticated %}
+            <div id="content_body" style="width: 85%;">
+            {% else %}
+            <div id="content_body" style="width: 100%;">
+            {% endif %}
+                <!-- Alerts -->
+                <div id="alerts">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        {% if category == "failure" %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"/>
+                        </div>
+                        {% elif category == "warning" %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"/>
+                        </div>
+                        {% elif category == "success" %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"/>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-light alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"/>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
 
-        <!--<script type="text/javascript"
-                src="{{ url_for('static', filename='index.js') }}">
-        </script>-->
+                <!-- Replaceable Content Block -->
+                <div id="content" class="container-fluid">
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <div id="footer" class="d-flex flex-nowrap" style="height:10vh;">
+            <!-- Extends the sidebar -->
+            {% if user.is_authenticated %}
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 15%;">
+                <hr>
+                <div id="sidebar-blankspace" class=""></div>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.profile_image %}
+                        <img src={{user.profile_image}} alt="" class="rounded-circle me-2" width="32" height="32">
+                        {% endif %}
+                        <strong>{{user.first_name}}</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item disabled">{{user.role_name}}</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 85%;">
+            {% else %}
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="width: 100%;">
+            {% endif %}
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                        <!-- TODO - Add icon here -->
+                    </a>
+                    <span class="mb-3 mb-md-0 text-muted">2023 - QA Web Application</span>
+                </div>
+            
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><!-- TODO - Add icon here --></a></li>
+                </ul>
+            </footer>
+        </div>
+
+        <!-- Bootstrap JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+                crossorigin="anonymous">
+        </script>
     </body>
 </html>
 

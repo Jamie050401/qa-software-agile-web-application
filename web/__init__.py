@@ -7,30 +7,27 @@
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
 # Version:  1.0                                                                                 #
-# Date:     xx/xx/23                                                                            #
 #################################################################################################
 
 from os import urandom
 from flask import Flask
 
-def create_application():
-    application = Flask(__name__)
-    application.config['SECRET_KEY'] = urandom(12)
-    
-    from web.views import views
-    from web.authentication.auth import auth
-    
-    application.register_blueprint(views, url_prefix='/')
-    application.register_blueprint(auth, url_prefix='/')
-    
-    from web.models import User
-    
-    # TODO - Implement new login manager
-    
-    return application
+from web.views import views
+from web.authentication.auth import auth
 
-def run_application(application : Flask, ip_address, is_debug : bool):
-    application.run(host = ip_address, port = 80, debug = is_debug)
+
+def create_application():
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = urandom(12)
+
+    app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(auth, url_prefix='/')
+
+    return app
+
+
+def run_application(app: Flask, ip_address, is_debug: bool):
+    app.run(host=ip_address, port=80, debug=is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #
