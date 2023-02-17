@@ -3,6 +3,7 @@ FROM alpine:latest
 
 # Copies application source code into the container's file system
 COPY . /app
+COPY ./data /data
 
 # Sets the application source code as the working directory for the rest of this file
 WORKDIR /app
