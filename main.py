@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     if IS_PRODUCTION:
         IP_ADDRESS = environ['IP_ADDRESS']
-        IS_DEBUG = environ['IS_DEBUG']
+        IS_DEBUG = environ['IS_DEBUG'] == "TRUE"
         app.wsgi_app = ProxyFix(app.wsgi_app,
                                 x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
