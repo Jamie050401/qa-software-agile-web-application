@@ -10,7 +10,8 @@
 #################################################################################################
 
 from db.models import roles
-from web.authentication import current_user
+# from web.authentication import current_user
+from web.authentication.auth import current_user
 
 permissions = ["create", "read", "update", "delete"]
 

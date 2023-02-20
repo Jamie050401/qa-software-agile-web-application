@@ -27,7 +27,7 @@ def create_application():
 
 
 def run_application(app: Flask, ip_address, is_debug: bool):
-    app.run(host=ip_address, port=80, debug=is_debug, threaded=True)
+    app.run(host=ip_address, port=80, debug=is_debug)
 
 #################################################################################################
 # File: __init__.py                                                                             #

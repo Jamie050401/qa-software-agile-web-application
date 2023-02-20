@@ -11,7 +11,8 @@
 
 from flask import Blueprint, render_template, redirect, url_for
 
-from web.authentication import current_user
+# from web.authentication import current_user
+from web.authentication.auth import current_user
 
 views = Blueprint('views', __name__)
 

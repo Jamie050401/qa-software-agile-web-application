@@ -42,7 +42,7 @@ class AuthUser():
         self.is_existing_user = False
 
 
-current_user = AuthUser()
+# current_user = AuthUser()
 
 #################################################################################################
 # File: __init__.py                                                                             #

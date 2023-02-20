@@ -14,9 +14,12 @@ from werkzeug.security import check_password_hash
 
 from db import session_local
 from db.models import User
-from web.authentication import current_user
+# from web.authentication import current_user
+from web.authentication import AuthUser
 
 auth = Blueprint('auth', __name__)
+
+current_user = AuthUser()
 
 
 @auth.route('/login', methods=["GET", "POST"])
