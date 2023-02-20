@@ -11,9 +11,10 @@
 
 from flask import Blueprint, render_template, redirect, url_for
 
-from web.authentication.auth import current_user
+from web.authentication.auth import current_user as AuthUser
 
 views = Blueprint('views', __name__)
+current_user = AuthUser.get_user()
 
 
 def redirects():

@@ -38,6 +38,8 @@ class AuthUser():
         self.profile_image = ""
         self.is_authenticated = False
 
+    def get_user(self):
+        return self
 
 
 #################################################################################################
