@@ -53,9 +53,7 @@ if __name__ == '__main__':
 #                                                                                               #
 # Flask (xxxx) Finish reference here ...                                                        #
 #                                                                                               #
-# Flask SQL Alchemy (xxxx) Finish reference here ...                                            #
-#                                                                                               #
-# Flask Login (xxxx) Finish reference here ...                                                  #
+# SQL Alchemy (xxxx) Finish reference here ...                                                  #
 #                                                                                               #
 # pytest (xxxx) Finish reference here ...                                                       #
 #                                                                                               #
