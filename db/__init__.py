@@ -14,7 +14,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
 
-from db import models
+from db.models import users
 
 DB_NAME = "data/database.db"
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
@@ -41,7 +41,7 @@ def create_database():
     database = session_local()
 
     # Creates the tables within the database
-    models.database_declarative_base.metadata.create_all(
+    users.database_declarative_base.metadata.create_all(
         bind=database_engine)
 
     # Populates the database tables with initial data

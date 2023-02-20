@@ -9,7 +9,7 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
-from db.models import User
+from db.models.users import User
 
 
 class AuthUser():

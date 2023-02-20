@@ -13,7 +13,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import check_password_hash
 
 from db import session_local
-from db.models import User
+from db.models.users import User
 from web.authentication import AuthUser
 
 auth = Blueprint('auth', __name__)
