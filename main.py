@@ -26,13 +26,14 @@ if __name__ == '__main__':
     IP_ADDRESS = config["SETTINGS"]["IP_ADDRESS"]
     IS_DEBUG = config["SETTINGS"]["IS_DEBUG"] == "True"
 
+    Database.create_database()
+
     if IS_PRODUCTION:
         IP_ADDRESS = environ['IP_ADDRESS']
         IS_DEBUG = environ['IS_DEBUG'] == "TRUE"
         app.wsgi_app = ProxyFix(app.wsgi_app)
-
-    Database.create_database()
-    Website.run_application(app, IP_ADDRESS, IS_DEBUG)
+    else:
+        Website.run_application(app, IP_ADDRESS, IS_DEBUG)
 
 
 #################################################################################################
