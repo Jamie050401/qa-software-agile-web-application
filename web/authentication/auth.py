@@ -14,7 +14,6 @@ from werkzeug.security import check_password_hash
 
 from db import session_local
 from db.models import User
-# from web.authentication import current_user
 from web.authentication import AuthUser
 
 auth = Blueprint('auth', __name__)
@@ -40,9 +39,6 @@ def login():
             database.close()
             return redirect(url_for("views.index"))
 
-    # Ensures the user remains on the login screen should a login attempt fail
-    current_user.login_failed()
-
     flash("Incorrect email or password, please try again.", category="failure")
 
     database.close()
@@ -67,9 +63,6 @@ def register():
     first_name = request.form.get("first_name")
     password = request.form.get("password_first")
     password_conf = request.form.get("password_second")
-
-    # Ensures the user is returned to the registration screen if the validation fails
-    current_user.register()
 
     user = database.query(User).filter(User.email == email).first()
     if user:

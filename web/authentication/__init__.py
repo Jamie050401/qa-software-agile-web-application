@@ -13,7 +13,8 @@ from db.models import User
 
 
 class AuthUser():
-    user_id = 0
+    id = 0
+    email = ""
     role_name = ""
     first_name = "Anonymous"
     profile_image = ""
@@ -21,28 +22,23 @@ class AuthUser():
     is_existing_user = False
 
     def login(self, user: User):
-        self.user_id = user.id
+        self.id = user.id
+        self.email = user.email
         self.role_name = user.role_name
         self.first_name = user.first_name
         self.profile_image = user.profile_image
         self.is_authenticated = True
         self.is_existing_user = True
 
-    def login_failed(self):
-        self.is_existing_user = True
-
     def logout(self):
-        self.user_id = 0
+        self.id = 0
+        self.email = ""
         self.role_name = ""
         self.first_name = "Anonymous"
         self.profile_image = ""
         self.is_authenticated = False
 
-    def register(self):
-        self.is_existing_user = False
 
-
-# current_user = AuthUser()
 
 #################################################################################################
 # File: __init__.py                                                                             #

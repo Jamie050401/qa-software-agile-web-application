@@ -36,7 +36,7 @@ services:
         environment:
             - IP_ADDRESS=0.0.0.0
             - PORT=9500
-            - IS_DEBUG=TRUE
+            - IS_DEBUG=FALSE
             - WORKERS=3
             - WORKER_THREADS=3
             - PUID=1000

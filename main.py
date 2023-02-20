@@ -16,15 +16,13 @@ from iniconfig import IniConfig
 import web as Website
 import db as Database
 
-IS_PRODUCTION = True
-
 config = IniConfig("data/config.ini")
-
 app = Website.create_application()
 
 if __name__ == '__main__':
+    IS_PRODUCTION = True
     IP_ADDRESS = config["SETTINGS"]["IP_ADDRESS"]
-    IS_DEBUG = config["SETTINGS"]["IS_DEBUG"] == "True"
+    IS_DEBUG = config["SETTINGS"]["IS_DEBUG"] == "TRUE"
 
     Database.create_database()
 
