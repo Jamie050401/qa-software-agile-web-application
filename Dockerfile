@@ -1,23 +1,15 @@
 # Command to execute Dockerfile (when inside root directory): docker build -t qa-web-application ./
 FROM alpine:latest
 
+# Sets the user within the docker container to the root user
+USER root
+
 # Declaring environment variables for the container
 ENV IP_ADDRESS=0.0.0.0 \
     PORT=80 \
     IS_DEBUG=FALSE \
     WORKERS=1 \
-    WORKER_THREADS=1 \
-    USER=root \
-    PUID=1000 \
-    PGID=1000 \
-    TZ=Europe/London
-
-# TODO - Need to test this ...
-# Setting up the desired user (defaults to root)
-RUN groupadd -g $PGID -o $USER && \
-    useradd -m -u $PUID -g $PGID -o -s /bin/bash $USER
-
-USER $USER
+    WORKER_THREADS=1
 
 # Copies application source code into the container's file system
 COPY . /app

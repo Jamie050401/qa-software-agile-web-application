@@ -39,8 +39,5 @@ services:
             - IS_DEBUG=FALSE
             - WORKERS=3
             - WORKER_THREADS=3
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/London
         volumes:
             - /docker/containers/QAWebApplication/data:/app/data
