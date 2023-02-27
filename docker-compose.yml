@@ -40,4 +40,4 @@ services:
             - WORKERS=1
             - WORKER_THREADS=1
         volumes:
-            - /docker/containers/QAWebApplication/data:/app/data
+            - /docker/containers/QAWebApplication/data:/data
