@@ -16,7 +16,7 @@ from iniconfig import IniConfig
 import web as Website
 import db as Database
 
-config = IniConfig("data/config.ini")
+config = IniConfig("./data/config.ini")
 app = Website.create_application()
 
 if __name__ == '__main__':

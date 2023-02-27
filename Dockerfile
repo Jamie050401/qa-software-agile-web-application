@@ -12,13 +12,13 @@ ENV IP_ADDRESS=0.0.0.0 \
     WORKER_THREADS=1
 
 # Declares the /data folder as a volume mount point
-VOLUME /app/data
+VOLUME /data
 
 # Copies application source code into the container's file system
-COPY . /app
+COPY . /
 
 # Sets the application source code as the working directory for the rest of this file
-WORKDIR /app
+WORKDIR /
 
 # Fetching generic alpine packages
 RUN apk add --update --no-cache bash && \

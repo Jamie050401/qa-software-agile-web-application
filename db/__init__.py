@@ -16,7 +16,7 @@ from werkzeug.security import generate_password_hash
 
 from db.models import users
 
-DB_NAME = "data/database.db"
+DB_NAME = "./data/database.db"
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
 database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={
