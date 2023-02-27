@@ -37,7 +37,7 @@ services:
             - IP_ADDRESS=0.0.0.0
             - PORT=9500
             - IS_DEBUG=FALSE
-            - WORKERS=3
-            - WORKER_THREADS=3
+            - WORKERS=1
+            - WORKER_THREADS=1
         volumes:
             - /docker/containers/QAWebApplication/data:/app/data
