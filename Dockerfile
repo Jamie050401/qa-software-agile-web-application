@@ -11,11 +11,11 @@ ENV IP_ADDRESS=0.0.0.0 \
     WORKERS=1 \
     WORKER_THREADS=1
 
-# Copies application source code into the container's file system
-COPY . /app
-
 # Declares the /data folder as a volume mount point
 VOLUME /app/data
+
+# Copies application source code into the container's file system
+COPY . /app
 
 # Sets the application source code as the working directory for the rest of this file
 WORKDIR /app
