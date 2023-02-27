@@ -72,3 +72,9 @@ if __name__ == '__main__':
 # Add other references here ...                                                                 #
 #                                                                                               #
 #################################################################################################
+
+# Other references:
+#   - Flask docs
+#   - Gunicorn docs
+#   - SQLAlchemy docs
+#   - Bootstrap docs

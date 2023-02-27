@@ -43,4 +43,4 @@ services:
             - PGID=1000
             - TZ=Europe/London
         volumes:
-            - /docker/containers/QAWebApplication/data:/data
+            - /docker/containers/QAWebApplication/data:/app/data
