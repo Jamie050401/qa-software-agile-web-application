@@ -13,8 +13,7 @@ from flask import flash
 
 from db.models.roles import roles
 
-
-def validate_user(email: str, first_name, password, password_conf, role_name):
+def validate_user(email: str, first_name : str, password : str, password_conf : str, role_name : str):
     is_valid = False
     if len(email) == 0:
         flash("You must provide an email address!", category="failure")
@@ -27,7 +26,7 @@ def validate_user(email: str, first_name, password, password_conf, role_name):
               category="failure")
     elif len(email) > 60:
         flash("Email cannot exceed 60 characters.", category="failure")
-    elif not "@" in email:  # .__contains__
+    elif not "@" in email:
         flash("Email provided is not valid!", category="failure")
     # TODO - Implement check to ensure email does not contain any other special characters
     elif len(first_name) < 2:
@@ -54,8 +53,13 @@ def validate_user(email: str, first_name, password, password_conf, role_name):
 
     return is_valid
 
+def validate_ticket(team : str, issue_type : str, issue_desc : str):
+    is_valid = True # This should be False
+    # TODO - Implement validation logic
+    return is_valid
+
 #################################################################################################
-# File: models.py                                                                               #
+# File: validation.py                                                                           #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #

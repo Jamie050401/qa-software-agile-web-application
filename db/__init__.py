@@ -15,16 +15,14 @@ from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash
 
 from db.models import users
+from db.models import tickets
 
 DB_NAME = "./data/database.db"
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_NAME}"
 
-database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={
-                                "check_same_thread": False})
+database_engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 
-session_local = sessionmaker(
-    autocommit=False, autoflush=False, bind=database_engine)
-
+session_local = sessionmaker(autocommit=False, autoflush=False, bind=database_engine)
 
 def get_queries():
     with open("db/sql/models/db_setup.sql", encoding="utf-8") as file:
@@ -33,7 +31,6 @@ def get_queries():
 
     return queries
 
-
 def create_database():
     if path.exists(DB_NAME):
         return None
@@ -41,8 +38,8 @@ def create_database():
     database = session_local()
 
     # Creates the tables within the database
-    users.database_declarative_base.metadata.create_all(
-        bind=database_engine)
+    users.database_declarative_base.metadata.create_all(bind=database_engine)
+    tickets.database_declarative_base.metadata.create_all(bind=database_engine)
 
     # Populates the database tables with initial data
     queries = get_queries()

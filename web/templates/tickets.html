@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!--===============================================================================================-->
+<!-- Program:  Python / SQLite Web Application                                                     -->
+<!-- Filename: tickets.html                                                                        -->
+<!-- Author:   Jamie Allen                                                                         -->
+<!-- Course:   BSc Digital Technology and Solutions                                                -->
+<!-- Module:   Software Engineering and Agile                                                      -->
+<!-- Version:  1.0                                                                                 -->
+<!-- Date:     xx/xx/23                                                                            -->
+<!--===============================================================================================-->
+
+{% extends "base.html" %}
+
+{% block title %}Tickets{% endblock %}
+
+{% block content %}
+
+{% if create %}
+<!-- Header -->
+<div class="px-4 py-5 text-left">
+    <h1 class="display-5 fw-bold">Create Support Ticket</h1>
+</div>
+
+<!-- Create Ticket Form -->
+<form method="POST">
+    <div class="form-group">
+        <label for="formEmailInput"><b>Email address</b></label>
+        <input type="email" class="form-control" id="formEmailInput" name="email" placeholder="{{user.email}}">
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="formNameInput"><b>Name</b></label>
+            <input class="form-control" id="formNameInput" placeholder="{{user.first_name}}">
+        </div>
+        <div class="col">
+            <label for="formTeamSelect"><b>Team</b></label>
+            <select class="form-control" id="formTeamSelect" name="team">
+                <option>IT</option>
+                <option>HR</option>
+                <option>Marketing</option>
+                <option>Operations</option>
+                <option>Managment</option>
+            </select>
+        </div>
+      </div>
+
+    <div class="form-group">
+        <label for="formTypeOfIssue"><b>Type of issue?</b></label>
+        <select class="form-control" id="formTypeOfIssue" name="typeOfIssue">
+            <option>Hardware</option>
+            <option>Software</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="formIssueDescription"><b>Please describe the issue</b></label>
+        <textarea class="form-control" id="formIssueDescription" rows="3" name="issueDescription"></textarea>
+    </div>
+
+    <div>
+        <br/>
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </div>
+</form>
+{% else %}
+<!-- Header -->
+<div class="px-4 py-5 text-left">
+    <h1 class="display-5 fw-bold">Tickets</h1>
+</div>
+{% endif %}
+{% endblock %}
+
+<!--===============================================================================================-->
+<!-- File: tickets.html                                                                            -->
+<!--                                                                                               -->
+<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
+<!--                                                                                               -->
+<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
+<!--===============================================================================================-->

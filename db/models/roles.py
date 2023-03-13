@@ -12,7 +12,7 @@
 roles = ["User", "Admin"]
 
 #################################################################################################
-# File: models.py                                                                               #
+# File: roles.py                                                                                #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #
