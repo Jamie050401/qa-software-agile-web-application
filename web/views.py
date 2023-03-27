@@ -35,9 +35,21 @@ def display(screen: str, display_login: bool):
 def index():
     return display("index.html", display_login=False)
 
+def get_user_profile_image(user_id):
+    database = session_local()
+    profile_image = database.query(User).filter(User.id == user_id).first().profile_image
+    database.close()
+    return profile_image
+
 @views.route('/tickets')
 def tickets():
-    return display("tickets.html", display_login=True)
+    database = session_local()
+    tickets_in_db = database.query(Ticket).all()
+    database.close()
+
+    if current_user.is_authenticated:
+        return render_template("tickets.html", user=current_user, create=False, tickets=tickets_in_db, get_user_profile_image=get_user_profile_image)
+    return redirects(display_login=True)
 
 @views.route('/tickets/create', methods=["GET", "POST"])
 def create_ticket():

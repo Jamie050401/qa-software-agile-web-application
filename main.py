@@ -19,7 +19,7 @@ import db as Database
 config = IniConfig("./data/config.ini")
 app = Website.create_application()
 
-# https://stackoverflow.com/questions/43878953/how-does-one-detect-if-one-is-running-within-a-docker-container-within-python
+# Taken from: https://stackoverflow.com/questions/43878953/how-does-one-detect-if-one-is-running-within-a-docker-container-within-python
 def is_docker():
     file_path = '/proc/self/cgroup'
     has_docker_env = path.exists('/.dockerenv')
