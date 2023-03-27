@@ -22,23 +22,23 @@ class Ticket(database_declarative_base):
     __tablename__ = "tickets"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    creator_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    assignee_id = Column(Integer, ForeignKey(User.id), nullable=False)
     team = Column(String(60), nullable=False)
     issue_type = Column(String(60), nullable=False)
     issue_desc = Column(String(255), nullable=False)
-    time_created = Column(DateTime(timezone=True))
-    time_updated = Column(DateTime(timezone=True))
+    time_created = Column(DateTime(timezone=True), default=datetime.now)
+    time_updated = Column(DateTime(timezone=True), default=datetime.now)
     is_valid = True
 
-    def __init__(self, user_id : int, team : str, issue_type : str, issue_desc : str):
+    def __init__(self, creator_id : int, team : str, issue_type : str, issue_desc : str):
         is_valid = validate_ticket(team, issue_type, issue_desc)
 
-        self.user_id = user_id
+        self.creator_id = creator_id
+        self.assignee_id = creator_id
         self.team = team
         self.issue_type = issue_type
         self.issue_desc = issue_desc
-        self.time_created = datetime.now()
-        self.time_updated = datetime.now()
         self.is_valid = is_valid
 
     def get_id(self):

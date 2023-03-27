@@ -9,6 +9,9 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+from datetime import datetime
+from math import trunc
+from sqlalchemy import DateTime
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 from web.authentication.auth import current_user as AuthUser
@@ -41,6 +44,26 @@ def get_user_profile_image(user_id):
     database.close()
     return profile_image
 
+def get_difference_between_dates(earlier_date, later_date):
+    diff = (later_date - earlier_date).seconds
+
+    if diff < 60:
+        return f"{trunc(diff)}s"
+    elif diff < 3600:
+        return f"{trunc(diff / 60)}m"
+    elif diff < 86400:
+        return f"{trunc(diff / 3600)}h"
+    elif diff < 604800:
+        return f"{trunc(diff / 86400)}d"
+    elif diff < 2419200:
+        return f"{trunc(diff / 604800)}w"
+    else:
+        return ">1M"
+
+def convert_ticket_created_datetime(creation_date):
+    diff = get_difference_between_dates(creation_date, datetime.now())
+    return diff
+
 @views.route('/tickets')
 def tickets():
     database = session_local()
@@ -48,7 +71,7 @@ def tickets():
     database.close()
 
     if current_user.is_authenticated:
-        return render_template("tickets.html", user=current_user, create=False, tickets=tickets_in_db, get_user_profile_image=get_user_profile_image)
+        return render_template("tickets.html", user=current_user, create=False, tickets=tickets_in_db, get_user_profile_image=get_user_profile_image, convert_ticket_created_datetime=convert_ticket_created_datetime)
     return redirects(display_login=True)
 
 @views.route('/tickets/create', methods=["GET", "POST"])
