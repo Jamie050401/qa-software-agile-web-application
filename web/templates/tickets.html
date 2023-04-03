@@ -70,25 +70,103 @@
 <div class="px-4 py-5 text-left">
     <h1 class="display-5 fw-bold">Tickets</h1>
 </div>
+    {% if edit %}
+    <!-- Edit ticket -->
+    <form method="POST">
+        <div class="form-group">
+            <label for="form_assignee"><b>Assignee</b></label>
+            <select class="form-control" id="form_assignee" name="assignee">
+                {% for user in get_users() %}
+                    {% if ticket.assignee_id == user.id %}
+                    <option selected value={{ user.id }}>{{ user.first_name }}</option>
+                    {% else %}
+                    <option value={{ user.id }}>{{ user.first_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
 
-<!-- List of tickets -->
-<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5">
-    <div class="list-group">
-        {% for ticket in tickets %}
-        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src={{ get_user_profile_image(ticket.assignee_id) }} alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-0">{{ ticket.get_id() }}</h6>
-                    <p class="mb-0 opacity-75">{{ ticket.issue_desc }}</p>
+        <div class="form-group">
+            <label for="form_team_select"><b>Team</b></label>
+            <select class="form-control" id="form_team_select" name="team">
+                {% if ticket.team == "IT" %}
+                <option selected>IT</option>
+                {% else %}
+                <option>IT</option>
+                {% endif %}
+                {% if ticket.team == "HR" %}
+                <option selected>HR</option>
+                {% else %}
+                <option>HR</option>
+                {% endif %}
+                {% if ticket.team == "Marketing" %}
+                <option selected>Marketing</option>
+                {% else %}
+                <option>Marketing</option>
+                {% endif %}
+                {% if ticket.team == "Operations" %}
+                <option selected>Operations</option>
+                {% else %}
+                <option>Operations</option>
+                {% endif %}
+                {% if ticket.team == "Managment" %}
+                <option selected>Managment</option>
+                {% else %}
+                <option>Managment</option>
+                {% endif %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="form_type_of_issue"><b>Type of issue?</b></label>
+            <select class="form-control" id="form_type_of_issue" name="type_of_issue">
+                {% if ticket.issue_type == "Hardware" %}
+                <option selected>Hardware</option>
+                {% else %}
+                <option>Hardware</option>
+                {% endif %}
+                {% if ticket.issue_type == "Software" %}
+                <option selected>Software</option>
+                {% else %}
+                <option>Software</option>
+                {% endif %}
+                {% if ticket.issue_type == "Other" %}
+                <option selected>Other</option>
+                {% else %}
+                <option>Other</option>
+                {% endif %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="form_issue_desc"><b>Issue Description</b></label>
+            <textarea class="form-control" id="form_issue_desc" rows="3" name="issue_desc">{{ ticket.issue_desc }}</textarea>
+        </div>
+
+        <div>
+            <br/>
+            <button type="submit" class="btn btn-primary mb-2">Update</button>
+        </div>
+    </form>
+    {% else %}
+    <!-- List of tickets -->
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5">
+        <div class="list-group">
+            {% for ticket in tickets %}
+            <a href="/tickets/edit?ticket_id={{ticket.id}}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                <img src={{ get_user_profile_image(ticket.assignee_id) }} alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">{{ ticket.get_id() }}</h6>
+                        <p class="mb-0 opacity-75">{{ ticket.issue_desc }}</p>
+                    </div>
+                    <small class="opacity-50 text-nowrap">{{ convert_ticket_created_datetime(ticket.time_created) }}</small>
                 </div>
-                <small class="opacity-50 text-nowrap">{{ convert_ticket_created_datetime(ticket.time_created) }}</small>
-            </div>
-        </a>
-        {% endfor %}
+            </a>
+            {% endfor %}
+        </div>
     </div>
-</div>
-
+    {% endif %}
 {% endif %}
 {% endblock %}
 
