@@ -364,9 +364,4 @@ FodyWeavers.xsd
 
 # CUSTOM
 .vscode/
-db/database.db
-db/sql/role_select.sql
-db/sql/role_insert.sql
-db/sql/user_delete.sql
-db/sql/user_select.sql
-db/sql/user_insert.sql
+data/database.db
