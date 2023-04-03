@@ -70,7 +70,30 @@ def tickets():
     database.close()
 
     if current_user.is_authenticated:
-        return render_template("tickets.html", user=current_user, create=False, edit=False, tickets=tickets_in_db, get_user_profile_image=get_user_profile_image, convert_ticket_created_datetime=convert_ticket_created_datetime, edit_ticket=edit_ticket)
+        return render_template("tickets.html", user=current_user, create=False, view=False, edit=False, tickets=tickets_in_db, get_user_profile_image=get_user_profile_image, convert_ticket_created_datetime=convert_ticket_created_datetime, edit_ticket=edit_ticket)
+    return redirects(display_login=True)
+
+def get_user(user_id):
+    database = session_local()
+    user = database.query(User).filter(User.id == user_id).first()
+    database.close()
+    return user
+
+@views.route('/tickets/view')
+def view_ticket():
+    # Getting the ticket ID as an argument from the URL
+    ticket_id = request.args['ticket_id']
+    # Fetching the ticket from the database
+    database = session_local()
+    ticket = database.query(Ticket).filter(Ticket.id == ticket_id).first()
+    database.close()
+
+    if ticket is None:
+        flash("Ticket not found!", category="failure")
+        return redirect(url_for("views.tickets"))
+
+    if current_user.is_authenticated:
+        return render_template("tickets.html", user=current_user, create=False, view=True, edit=False, ticket=ticket, get_user=get_user)
     return redirects(display_login=True)
 
 def get_users():
@@ -95,7 +118,7 @@ def edit_ticket():
     # Displaying the edit screen to the user
     if request.method == "GET":
         if current_user.is_authenticated:
-            return render_template("tickets.html", user=current_user, create=False, edit=True, ticket=ticket, get_users=get_users)
+            return render_template("tickets.html", user=current_user, create=False, view=False, edit=True, ticket=ticket, get_users=get_users)
         return redirects(display_login=True)
     # Updating the ticket in the database
     else:
@@ -146,7 +169,7 @@ def create_ticket():
         database.close()
 
     if current_user.is_authenticated:
-        return render_template("tickets.html", user=current_user, create=True, edit=False)
+        return render_template("tickets.html", user=current_user, create=True, view=False, edit=False)
     return redirects(display_login=True)
 
 #@views.route('/users')

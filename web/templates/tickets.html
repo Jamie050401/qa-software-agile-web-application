@@ -23,7 +23,7 @@
 </div>
 
 <!-- Create Ticket Form -->
-<form method="POST">
+<form method="POST" class="px-4 py-5 text-left">
     <div class="form-group">
         <label for="formEmailInput"><b>Email address</b></label>
         <input type="email" class="form-control" id="formEmailInput" name="email" placeholder="{{user.email}}">
@@ -44,7 +44,7 @@
                 <option>Managment</option>
             </select>
         </div>
-      </div>
+    </div>
 
     <div class="form-group">
         <label for="formTypeOfIssue"><b>Type of issue?</b></label>
@@ -62,17 +62,19 @@
 
     <div>
         <br/>
-        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        <button type="submit" class="btn btn-primary mb-2">Create</button>
+        <button type="button" class="btn btn-outline-secondary mb-2" onclick="history.back();">Cancel</button>
     </div>
 </form>
 {% else %}
-<!-- Header -->
-<div class="px-4 py-5 text-left">
-    <h1 class="display-5 fw-bold">Tickets</h1>
-</div>
     {% if edit %}
+    <!-- Header -->
+    <div class="px-4 py-5 text-left">
+        <h1 class="display-5 fw-bold">{{ ticket.get_id() }}</h1>
+    </div>
+
     <!-- Edit ticket -->
-    <form method="POST">
+    <form method="POST" class="px-4 py-5 text-left">
         <div class="form-group">
             <label for="form_assignee"><b>Assignee</b></label>
             <select class="form-control" id="form_assignee" name="assignee">
@@ -146,14 +148,73 @@
         <div>
             <br/>
             <button type="submit" class="btn btn-primary mb-2">Update</button>
+            <button type="button" class="btn btn-outline-secondary mb-2" onclick="history.back();">Cancel</button>
         </div>
     </form>
+    {% elif view %}
+    <!-- Header -->
+    <div class="px-4 py-5 text-left">
+        <h1 class="display-5 fw-bold">{{ ticket.get_id() }}</h1>
+        <div>
+            {% if user.role_name == "Admin" %}
+            <button class="btn btn-danger m-2 float-end" onclick="window.location.href='/tickets/delete?ticket_id={{ ticket.id }}';">Delete Ticket</button>
+            {% endif %}
+            <button class="btn btn-primary m-2 float-end" onclick="window.location.href='/tickets/edit?ticket_id={{ ticket.id }}';">Edit Ticket</button>
+        </div>
+    </div>
+
+    <div class="px-4 py-5 text-left">
+        <div class="row">
+            <div class="col">
+                <label><b>Raised by</b></label>
+                <div>
+                    <label>{{ get_user(ticket.creator_id).first_name }} ({{ get_user(ticket.creator_id).email }}) at {{ ticket.time_created }}</label>
+                </div>
+            </div>
+            <div class="col">
+                <label><b>Assigned to</b></label>
+                <div>
+                    <label>{{ get_user(ticket.assignee_id).first_name }} ({{ get_user(ticket.assignee_id).email }})</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label><b>Team</b></label>
+            <div>
+                <label>{{ ticket.team }}</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <label><b>Issue Type</b></label>
+            <div>
+                <label>{{ ticket.issue_type }}</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <label><b>Issue Description</b></label>
+            <textarea class="form-control" rows="3" readonly>{{ ticket.issue_desc }}</textarea>
+        </div>
+
+        <div>
+            <br/>
+            <button type="button" class="btn btn-outline-secondary mb-2" onclick="window.location.href='/tickets'">Go back</button>
+        </div>
+    </div>
     {% else %}
+    <!-- Header -->
+    <div class="px-4 py-5 text-left">
+        <h1 class="display-5 fw-bold">Tickets</h1>
+        <button class="btn btn-primary mb-2 float-end" onclick="window.location.href='/tickets/create';">Create Ticket</button>
+    </div>
+
     <!-- List of tickets -->
     <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5">
         <div class="list-group">
             {% for ticket in tickets %}
-            <a href="/tickets/edit?ticket_id={{ticket.id}}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <a href="/tickets/view?ticket_id={{ticket.id}}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                 <img src={{ get_user_profile_image(ticket.assignee_id) }} alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
                 <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
