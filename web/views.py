@@ -27,15 +27,12 @@ def redirects(display_login: bool):
 
     return redirect(url_for("auth.register"))
 
-def display(screen: str, display_login: bool):
-    if current_user.is_authenticated:
-        return render_template(screen, user=current_user)
-
-    return redirects(display_login)
-
 @views.route('/')
 def index():
-    return display("index.html", display_login=False)
+    if current_user.is_authenticated:
+        return render_template("index.html", user=current_user)
+
+    return redirects(display_login=False)
 
 def get_user_profile_image(user_id):
     database = session_local()

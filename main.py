@@ -55,8 +55,6 @@ if __name__ == '__main__':
 #                                                                                               #
 # Python is used throughout this application. Other Packages are as follows:                    #
 #                                                                                               #
-# Python (xxxx) Finish Python reference here ...                                                #
-#                                                                                               #
 # Flask (xxxx) Finish reference here ...                                                        #
 #                                                                                               #
 # SQL Alchemy (xxxx) Finish reference here ...                                                  #
