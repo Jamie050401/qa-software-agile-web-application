@@ -11,7 +11,6 @@
 
 from db.models.users import User
 
-
 class AuthUser():
     id = 0
     email = ""
@@ -38,7 +37,6 @@ class AuthUser():
 
     def get_user(self):
         return self
-
 
 #################################################################################################
 # File: __init__.py                                                                             #
