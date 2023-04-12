@@ -31,8 +31,8 @@ The back-end logic includes validation and restrictions to ensure that unauthent
 
 ### Option A
 
-1. Install Python 3.11.0 into your environment.
-2. Execute the {} script to have the required packages automatically installed inside your environment.
+1. Install Python 3.11.0 into your environment (ensure that pip is also installed at this point).
+2. Execute the 'install.py' script to have the required packages automatically installed inside your environment.
 3. Run the application using main.py OR deploy it using the provided Dockerfile and docker-compose.yml.
 
 ### Option B

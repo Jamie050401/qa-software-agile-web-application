@@ -363,5 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # CUSTOM
+.venv/
 .vscode/
 data/database.db
