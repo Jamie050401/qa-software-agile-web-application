@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: auth.py                                                                                 #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import check_password_hash
 
@@ -73,11 +81,3 @@ def register():
     database.close()
 
     return redirect(url_for("auth.register"))
-
-#################################################################################################
-# File: auth.py                                                                                 #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

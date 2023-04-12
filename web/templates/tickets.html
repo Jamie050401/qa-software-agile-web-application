@@ -9,6 +9,14 @@
 <!-- Version:  1.0                                                                                 -->
 <!--===============================================================================================-->
 
+<!--===============================================================================================-->
+<!-- File: tickets.html                                                                            -->
+<!--                                                                                               -->
+<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
+<!--                                                                                               -->
+<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
+<!--===============================================================================================-->
+
 {% extends "base.html" %}
 
 {% block title %}Tickets{% endblock %}
@@ -28,20 +36,22 @@
         <input type="email" class="form-control" id="formEmailInput" name="email" placeholder="{{user.email}}">
     </div>
 
-    <div class="row">
-        <div class="col">
-            <label for="formNameInput"><b>Name</b></label>
-            <input class="form-control" id="formNameInput" placeholder="{{user.first_name}}">
-        </div>
-        <div class="col">
-            <label for="formTeamSelect"><b>Team</b></label>
-            <select class="form-control" id="formTeamSelect" name="team">
-                <option>IT</option>
-                <option>HR</option>
-                <option>Marketing</option>
-                <option>Operations</option>
-                <option>Managment</option>
-            </select>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="formNameInput"><b>Name</b></label>
+                <input class="form-control" id="formNameInput" placeholder="{{user.first_name}}">
+            </div>
+            <div class="col">
+                <label for="formTeamSelect"><b>Team</b></label>
+                <select class="form-control" id="formTeamSelect" name="team">
+                    <option>IT</option>
+                    <option>HR</option>
+                    <option>Marketing</option>
+                    <option>Operations</option>
+                    <option>Managment</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -248,11 +258,3 @@
     {% endif %}
 {% endif %}
 {% endblock %}
-
-<!--===============================================================================================-->
-<!-- File: tickets.html                                                                            -->
-<!--                                                                                               -->
-<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
-<!--                                                                                               -->
-<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
-<!--===============================================================================================-->

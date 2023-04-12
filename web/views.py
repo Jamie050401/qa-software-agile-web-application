@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: views.py                                                                                #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 from web.functions import redirects, get_user_profile_image, convert_ticket_created_datetime, get_user, get_users
@@ -155,11 +163,3 @@ def delete_ticket():
         flash("Only 'Admin' users can delete tickets!", category="failure")
         return redirect(url_for("views.tickets"))
     return redirects(display_login=True)
-
-#################################################################################################
-# File: views.py                                                                                #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: functions.py                                                                            #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from datetime import datetime
 from math import trunc
 from flask import redirect, url_for
@@ -62,11 +70,3 @@ def get_users():
     users = database.query(User).all()
     database.close()
     return users
-
-#################################################################################################
-# File: functions.py                                                                            #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

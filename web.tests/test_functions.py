@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: test_functions.py                                                                       #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from web import functions
 
 class TestGetUserProfileImage:
@@ -45,11 +53,3 @@ class TestGetDifferenceBetweenDates:
         earlier_date = "2021-01-01 00:00:00"
         later_date = "2021-02-01 00:00:01"
         assert functions.get_difference_between_dates(earlier_date, later_date) == ">1M"
-
-#################################################################################################
-# File: test_functions.py                                                                       #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

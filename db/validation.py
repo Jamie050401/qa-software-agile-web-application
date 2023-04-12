@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: validation.py                                                                           #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from flask import flash
 
 from db.models.roles import roles
@@ -57,11 +65,3 @@ def validate_ticket(team : str, issue_type : str, issue_desc : str):
     is_valid = True # This should be False
     # TODO - Implement validation logic
     return is_valid
-
-#################################################################################################
-# File: validation.py                                                                           #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################
