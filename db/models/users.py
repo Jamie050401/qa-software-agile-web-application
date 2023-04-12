@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: users.py                                                                                #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from werkzeug.security import generate_password_hash
@@ -36,11 +44,3 @@ class User(database_declarative_base):
         self.first_name = first_name
         self.password = generate_password_hash(password, "sha256")
         self.is_valid = is_valid
-
-#################################################################################################
-# File: users.py                                                                                #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

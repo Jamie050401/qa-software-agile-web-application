@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: __init__.py                                                                             #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from os import path
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
@@ -52,11 +60,3 @@ def create_database():
     database.close()
 
     return None
-
-#################################################################################################
-# File: __init__.py                                                                             #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

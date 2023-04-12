@@ -9,6 +9,14 @@
 <!-- Version:  1.0                                                                                 -->
 <!--===============================================================================================-->
 
+<!--===============================================================================================-->
+<!-- File: login.html                                                                              -->
+<!--                                                                                               -->
+<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
+<!--                                                                                               -->
+<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
+<!--===============================================================================================-->
+
 {% extends "base.html" %}
 
 {% block title %}Login{% endblock %}
@@ -38,23 +46,8 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
             <hr class="my-4">
             <p><small class="text-muted">Don't have an account?</small></p>
-            <p><button type="button" class="btn btn-link btn-sm" onclick="register_redirect()">Click here to sign-up.</button></p>
+            <p><button type="button" class="btn btn-link btn-sm" onclick="window.location.href='/register'">Click here to sign-up.</button></p>
         </form>
     </div>
 </div>
-
-<script>
-    function register_redirect()
-    {
-        location.href = "/register"
-    }
-</script>
 {% endblock %}
-
-<!--===============================================================================================-->
-<!-- File: login.html                                                                              -->
-<!--                                                                                               -->
-<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
-<!--                                                                                               -->
-<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
-<!--===============================================================================================-->

@@ -9,6 +9,14 @@
 <!-- Version:  1.0                                                                                 -->
 <!--===============================================================================================-->
 
+<!--===============================================================================================-->
+<!-- File: register.html                                                                           -->
+<!--                                                                                               -->
+<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
+<!--                                                                                               -->
+<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
+<!--===============================================================================================-->
+
 {% extends "base.html" %}
 
 {% block title %}Register{% endblock %}
@@ -50,24 +58,9 @@
                 <small class="text-muted">By clicking Sign-up, you agree to the terms of use.</small>
                 <hr class="my-4">
                 <small class="text-muted">Already have an account?</small>
-                <button type="button" class="btn btn-link btn-sm float-end" onclick="login_redirect()">Click here to sign-in.</button>
+                <button type="button" class="btn btn-link btn-sm float-end" onclick="window.location.href='/login'">Click here to sign-in.</button>
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    function login_redirect()
-    {
-        location.href = "/login"
-    }
-</script>
 {% endblock %}
-
-<!--===============================================================================================-->
-<!-- File: register.html                                                                           -->
-<!--                                                                                               -->
-<!-- Disclaimer: The following source code is the sole work of the author unless otherwise stated. -->
-<!--                                                                                               -->
-<!-- Copyright (c) Jamie Allen. All Rights Reserved.                                               -->
-<!--===============================================================================================-->

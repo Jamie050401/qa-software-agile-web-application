@@ -9,6 +9,14 @@
 # Version:  1.0                                                                                 #
 #################################################################################################
 
+#################################################################################################
+# File: __init__.py                                                                             #
+#                                                                                               #
+# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
+#                                                                                               #
+# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
+#################################################################################################
+
 from os import urandom
 from flask import Flask
 
@@ -28,11 +36,3 @@ def create_application():
 
 def run_application(app: Flask, ip_address, is_debug: bool):
     app.run(host=ip_address, port=80, debug=is_debug)
-
-#################################################################################################
-# File: __init__.py                                                                             #
-#                                                                                               #
-# Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
-#                                                                                               #
-# Copyright (c) Jamie Allen. All Rights Reserved.                                               #
-#################################################################################################

@@ -2,7 +2,7 @@
 
 #################################################################################################
 # Program:  Python / SQLite Web Application                                                     #
-# Filename: roles.py                                                                            #
+# Filename: __init__.py                                                                         #
 # Author:   Jamie Allen                                                                         #
 # Course:   BSc Digital Technology and Solutions                                                #
 # Module:   Software Engineering and Agile                                                      #
@@ -10,11 +10,11 @@
 #################################################################################################
 
 #################################################################################################
-# File: roles.py                                                                                #
+# File: __init__.py                                                                             #
 #                                                                                               #
 # Disclaimer: The following source code is the sole work of the author unless otherwise stated. #
 #                                                                                               #
 # Copyright (c) Jamie Allen. All Rights Reserved.                                               #
 #################################################################################################
 
-roles = ["User", "Admin"]
+import pytest
